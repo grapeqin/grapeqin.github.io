@@ -8,24 +8,9 @@ export default {
   'en-us': {
     pageMenu: [
       {
-        key: 'home', // 用作顶部菜单的选中
-        text: 'HOME',
-        link: '/en-us/index.html',
-      },
-      {
-        key: 'docs',
-        text: 'DOCS',
-        link: '/en-us/docs/demo1.html',
-      },
-      {
         key: 'blog',
         text: 'BLOG',
         link: '/en-us/blog/index.html',
-      },
-      {
-        key: 'community',
-        text: 'COMMUNITY',
-        link: '/en-us/community/index.html',
       },
     ],
     disclaimer: {
@@ -67,24 +52,9 @@ export default {
   'zh-cn': {
     pageMenu: [
       {
-        key: 'home',
-        text: '首页',
-        link: '/zh-cn/index.html',
-      },
-      {
-        key: 'docs',
-        text: '文档',
-        link: '/zh-cn/docs/demo1.html',
-      },
-      {
         key: 'blog',
         text: '博客',
         link: '/zh-cn/blog/index.html',
-      },
-      {
-        key: 'community',
-        text: '社区',
-        link: '/zh-cn/community/index.html',
       },
     ],
     disclaimer: {
