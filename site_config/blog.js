@@ -59,11 +59,11 @@ export default {
     postsTitle: '所有文章',
     list: [
       {
-        title: '第一篇博客',
-        author: 'author1',
-        dateStr: 'May 12nd，2018',
-        desc: '博客描述，总结博客的主体内容',
-        link: '/zh-cn/blog/blog1.html',
+        title: '阅读记录',
+        author: 'grapeqin',
+        dateStr: '2019年8月',
+        desc: '唯有阅读才能不断进步，记录我的阅读书目',
+        link: '/zh-cn/blog/book/2019年阅读记录.html',
       },
       {
         title: '第二篇博客',
