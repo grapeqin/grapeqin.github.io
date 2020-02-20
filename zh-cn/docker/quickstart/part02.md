@@ -1,8 +1,12 @@
-# 构建并运行镜像
+## Part 2:构建并运行镜像
+
+| Part01                                                | Part02                                              | Part03                                                      |
+| ----------------------------------------------------- | --------------------------------------------------- | ----------------------------------------------------------- |
+| [Docker概念和设置](zh-cn/docker/quickstart/part01.md) | [构建并运行镜像](zh-cn/docker/quickstart/part02.md) | [在Docker Hub中共享镜像](zh-cn/docker/quickstart/part03.md) |
 
 ### 先决条件
 
-确保浏览完Docker的概念和设置[part 01](/zh-cn/docker/quickstart/part01.md)
+浏览完Docker的概念和设置[part 01](/zh-cn/docker/quickstart/part01.md)
 
 ### 简介
 
@@ -15,8 +19,6 @@
 在指南的这一阶段，我们聚焦在开发流程的第1步：创建镜像，镜像是容器的模板。Docker镜像拥有容器化应用运行进程的私有化文件系统；创建的镜像需要包含应用程序运行需要的所有资源。
 
 > 当你学会了如何构建镜像，你会发现 **容器化的开发环境 **相比传统的开发环境更容易设置。这是因为容器化的开发环境将应用运行所需要的依赖完全隔离在镜像中；在开发机器上除了安装Docker外不需要再安装任何其他软件。用这种方式，在你的机器上可以轻松开发各种不同技术栈的应用，而不需要任何配置。
-
-
 
 ### 设置
 
@@ -125,5 +127,5 @@ docker image build -t bulletinboard:1.0 .
 
 
 
-
+> 参考：[https://docs.docker.com/get-started/part02/](https://docs.docker.com/get-started/part2/)
 
