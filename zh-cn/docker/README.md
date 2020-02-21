@@ -10,5 +10,5 @@
 - [quickstart-part02](zh-cn/docker/quickstart/part02.md)
 - [quickstart-part03](zh-cn/docker/quickstart/part03.md)
 
-### [教育资源](zh-cn/docker/educational_resources.md)
+### [教育资源](https://docs.docker.com/get-started/resources/)
 
