@@ -11,4 +11,5 @@
 * Service Mesh
 
 [GitHub](https://github.com/grapeqin/)
-[Get Started](/zh-cn/)
+[Get Started](/zh-cn/docker/)
+
