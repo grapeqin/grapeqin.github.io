@@ -8,7 +8,7 @@
 
 #### [2.了解Docker并运行Hello World](/zh-cn/docker/docker-4-weeks/chapter-2.md)
 
-#### [3.构建自己的镜像]()
+#### [3.构建自己的镜像](/zh-cn/docker/docker-4-weeks/chapter-3.md)
 
 #### [4.从源代码将应用程序打包成镜像]()
 
