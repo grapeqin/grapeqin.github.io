@@ -10,7 +10,7 @@
 
 ## 3.1 使用来自Docker Hub的镜像
 
-我们通过你在本章将要构建的一个已完成版本的镜像开始，这样你就能看到它是怎么与Docker协作。try-it-now 练习使用一个叫做`web-ping`的应用来检查网站是否在运行。这个应用通过容器运行，每3秒向我的博客发送一个HTTP请求直到容器停止运行。
+我们通过你在本章将要构建的镜像开始，这样你就能看到它是怎么与Docker协作。try-it-now 练习使用一个叫做`web-ping`的应用来检查网站是否在运行。这个应用通过容器运行，每3秒向我的博客发送一个HTTP请求直到容器停止运行。
 
 在第2章我们已经知道，当运行`docker container run`命令时，如果当前宿主机没有镜像它会自动把它下载到本地，这是因为Docker平台内置了应用分发功能。离开了docker我们仍然能管理这些镜像，在必要时它能及时拉取镜像，当然也可以通过CLI直接拉取。
 
@@ -30,9 +30,9 @@ docker image pull diamol/ch03-web-ping
 
 镜像名为`diamol/ch03-web-ping`。它存储在Docker Hub，Docker默认从这里拉取镜像。镜像服务器称为注册表，Docker Hub是大家免费使用的公开注册表。Docker Hub也有个网站，你可以访问[https://hub.docker.com/r/diamol/ch03-web-ping](https://hub.docker.com/r/diamol/ch03-web-ping)  来获得该镜像的详细信息。
 
-`docker image pull`命令有一些有趣的输出，它将显示镜像是怎么存储的。Docker镜像逻辑上来看是一个整体-你可以把它看做是一个包含完整应用的zip打包文件-该应用包含NodeJS运行时环境以及应用代码。
+`docker image pull`命令的输出比较有趣，它将显示镜像是怎么存储的。Docker镜像逻辑上来看是一个整体-你可以把它看做是一个包含完整应用的zip打包文件-该应用包含NodeJS运行时环境以及应用代码。
 
-拉取过程中你并没有看到一个单独的文件下载，而是有一批文件在下载，称为镜像分层。Docker镜像在物理结构上存储着许多小文件，Docker把它们组装起来形成完整的容器文件系统。当拉取完所有的镜像层后，完整的镜像就可以使用了。
+拉取过程中你会看到并不是下载一个单独的文件，而是好几个文件在下载，称为镜像分层。 Docker镜像在物理结构上存储着许多小文件，Docker把它们组装起来形成完整的容器文件系统。当拉取完所有的镜像层后，完整的镜像就可以使用了。
 
 >   **TRY IT NOW**
 >
@@ -58,7 +58,7 @@ docker container logs web-ping
 
 你会看到如图3.2所示的内容，应用正在向blog.sixeyed.com 发送HTTP请求：
 
-**图3.2 web-ping容器正在运行，向我的博客发起固定的请求流量**
+**图3.2 web-ping容器正在运行，向我的博客发起固定频率的请求流量**
 
 ![img](https://dpzbhybb2pdcj.cloudfront.net/stoneman/v-7/Figures/Images_01-03_16.jpg)
 
@@ -87,7 +87,7 @@ docker container run --env TARGET=google.com diamol/ch03-web-ping
 
 容器以不同的方式运行。首先它以交互方式来运行，由于没有使用`--detach`选项，来自应用的输出直接显示在控制台上。应用会一直运行直到通过CTRL-C结束。第二，它由ping blog.sixeyed.com改为ping google.com。
 
-这是本章的一个要点 - Docker镜像将应用的一系列默认配置打包起来，但当你运行容器的时候也可以提供不同的配置。
+这是本章的一个要点 - Docker镜像将应用的一系列默认配置打包起来，但运行容器的时候也可以提供不同的配置。
 
 环境变量是达到这个目标的一种简单方式。`web-ping`应用会搜索`TARGET`环境变量。该镜像为这个变量设置的值为`blog.sixeyed.com`，可以在`docker container run`命令运行容器的时候通过`--env`选项来提供不同的值。图3.4显示镜像中的容器拥有不同的配置。
 
@@ -105,7 +105,7 @@ Dockerfile是用来打包应用而编写的一段简单脚本-它包括一系列
 
 **代码清单3.1显示了打包`web-ping`应用的完整Dockerfile：**
 
-```
+```powershell
 FROM diamol/node
  
 ENV TARGET="blog.sixeyed.com"
@@ -118,9 +118,9 @@ COPY app.js .
 CMD ["node", "/web-ping/app.js"]
 ```
 
-即使你是第一次看到这个Dockerfile文件，我想你也能大致猜出它们分别是干什么的。Dockerfile指令包括`FROM`、`ENV`、`WORDDIR`、`COPY`、`CMD`；它们都是大写字母，其实这并不是必须的，只是一个约定而已。下面是每个指令的说明：
+即使你是第一次看到这个Dockerfile文件，我想你也能大致猜出它们分别是干什么的。Dockerfile指令包括`FROM`、`ENV`、`WORKDIR`、`COPY`、`CMD`；它们都是大写字母，其实这并不是必须的，只是一个约定而已。下面是每个指令的说明：
 
-`FROM` - 每个镜像都必须继承其他的镜像来开始。在本例中，`web-ping`镜像将使用它的`diamol/node`镜像作为起点。该镜像安装好了NodeJS，这是`web-ping`应用运行需要的环境。
+`FROM` - 每个镜像都必须继承其他的镜像。在本例中，`web-ping`镜像将使用`diamol/node`镜像作为基础镜像。该镜像安装好了NodeJS，这是`web-ping`应用运行需要的环境。
 
 `ENV`- 设置环境变量的值。语法是 `[key] = "[value]"`,该例有三个`ENV`指令，表示设置了三种不同的环境变量。
 
@@ -147,7 +147,7 @@ ls
 
 `app.js` - 包含应用代码
 
-`README.md` - 
+`README.md` - 空白的说明文件
 
 如图3.5所示：
 
@@ -161,7 +161,7 @@ ls
 
 ## 3.3 构建自己的镜像
 
-基于Dockerfile构建镜像之前Docker需要了解一些镜像的基本情况。它需要知道镜像的名称，知道要打包成镜像的文件位置。前面你已经通过终端找到了要打包镜像的文件路径，现在我们准备开始吧。
+基于Dockerfile构建镜像之前Docker需要了解一些镜像的基本情况。它需要知道镜像的名称，知道要打包成镜像的文件位置。前面已经通过终端找到了要打包镜像的文件路径，现在我们准备开始吧。
 
 >   **TRY IT NOW**
 >
@@ -179,7 +179,7 @@ docker image build --tag web-ping .
 
 如果运行构建命令时出错了，首先你需要检查Docker引擎是否已经启动。确保Docker桌面应用程序在Windows或Mac下正常运行。然后检查你是否位于正确的目录。需要在有Dockerfile和app.js的`ch03-web-ping`目录下。最后检查下键入的构建命令是否正确 - 命令最后的那个点符号不能缺少 - 它会告诉Docker构建上下文是当前这个目录。
 
-如果构建时弹出一些文件许可的警告，那是因为你正在通过Windows环境下的Docker命令构建Linux容器，多亏了Docker桌面应用程序的Linux容器模式才能执行这种操作。由于Windows没有记录类似Linux的文件权限，这个警告是告诉你从Windows机器上拷贝的文件在Docker镜像中将拥有完全的读写权限。
+如果构建时弹出一些文件许可的警告，那是因为你正在通过Windows环境下的Docker命令构建Linux容器，幸亏Docker桌面应用程序的Linux容器模式才能执行这种操作。由于Windows没有记录类似Linux的文件权限，这个警告是告诉你从Windows机器上拷贝的文件在Docker镜像中将拥有完全的读写权限。
 
 当看到命令行中输出类似`successfully built` 或 `successfully tagged`这样的提示语，表示镜像构建完成。它位于本地的镜像缓存中，通过Docker命令能将它显示出来。
 
@@ -188,7 +188,7 @@ docker image build --tag web-ping .
 >   列出镜像名以 'w' 开头的镜像：
 
 ```powershell
-docker image ls w*
+docker image ls "w*"
 ```
 
 你会看到`web-ping`镜像显示出来了
@@ -309,7 +309,7 @@ docker image build -t web-ping:v2 .
 
 Docker通过对输入内容生成hash值来判断该镜像是否与缓存中的镜像匹配，就像是给输出内容添加一个数字手印。Hash值是由Dockerfile中的指令和将要复制到文件中的内容一起产生的。如果在现有的镜像中没有匹配的hash值，Docker会执行所有的指令 - 这将使缓存失效。如果缓存失效了，Docker将执行所有的指令，即使它们实际上没有改变。
 
-在示例镜像中做很小的改动也会对镜像的构建产生影响。自从上一次构建完，app.js`文件发生了改变，因此第6步的 `COPY`指令需要执行，第7步的 `CMD` 指令虽然与上一次的构建相同，但由于在第6步缓存被打破了，这个指令依然要重新执行一遍。
+在示例镜像中做很小的改动也会对镜像的构建产生影响。自从上一次构建完，`app.js` 文件发生了改变，因此第6步的 `COPY`指令需要执行，第7步的`CMD` 指令虽然与上一次的构建相同，但由于在第6步缓存被打破了，这个指令依然要重新执行一遍。
 
 编写Dockerfile的指令顺序应该按照指令被修改的频率来排列 - 不经常改变的指令应该位于Dockerfile的前面，经常会改变的指令位于Dockerfile的末尾。这样做的目的是我们尽量只执行最后几个指令，其他的都使用缓存即可。共享镜像可以给你节省时间、磁盘空间以及网络带宽。
 
@@ -349,7 +349,7 @@ docker image build -t web-ping:v3 .
 
 现在，到了实验时间。这次的目标是回答这个问题：如何在不使用Dockerfile的情况下构建镜像？Dockerfile的作用是完成应用的自动化部署，但并不是所有事情都能自动化。有时你需要运行一些应用，手动完成一些步骤，因为它们无法通过脚本来完成。
 
-该实验是一个简单版本。你将以Docker Hub中名为`diamol/ch03-lab的镜像开始，该镜像在路径`/diamol/ch03.txt`上有个文件。你需要更新该文件并在文件末尾加上你的名字。然后利用这个更改后的文件来生成自己的镜像。禁止使用Dockerfile :)
+该实验是一个简单版本。你将以Docker Hub中名为`diamol/ch03-lab`的镜像开始，该镜像在路径` /diamol/ch03.txt`上有个文件。你需要更新该文件并在文件末尾加上你的名字。然后利用这个更改后的文件来生成自己的镜像。禁止使用Dockerfile :)
 
 在本书的代码仓库中有一个示例解决方案，如果你需要的话可以在[https://github.com/sixeyed/diamol/tree/master/cha03/lab](https://github.com/sixeyed/diamol/tree/master/cha03/lab) 找到。
 
@@ -362,6 +362,10 @@ docker image build -t web-ping:v3 .
 依然有许多容器相关的命令你没有用过， `docker container --help` 能向你展示以上两条提示的详细内容来帮助你完成该实验。
 
 
+
+## 本章总结：
+
+![img](_media/chapter3-summary.png)
 
 >   **[第2章](/zh-cn/docker/docker-4-weeks/chapter-2.md)**                                                  **[第4章](/zh-cn/docker/docker-4-weeks/chapter-4.md)**
 

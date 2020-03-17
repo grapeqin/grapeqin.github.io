@@ -38,7 +38,7 @@ class Solution {
 
 **动画1 采用负负得正的思想实现从数组中找出重复的数据**
 
-[动画1 采用负负得正的思想实现从数组中找出重复的数据](http://localhost:3000/zh-cn/ds/_media/Leetcode442.mp4  ' :include  :type=video controls width:100% height=400px')
+[动画1 采用负负得正的思想实现从数组中找出重复的数据](/_media/Leetcode442.mp4  ' :include  :type=video controls width:100% height=400px')
 
 ## 代码实现2
 
