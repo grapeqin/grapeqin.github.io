@@ -2,5 +2,5 @@
 
 * [Docker](zh-cn/docker/docker-4-weeks/)
 
--   [Redis](/zh-cn/redis/)
+* [Redis](/zh-cn/redis/)
 
