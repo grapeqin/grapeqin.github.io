@@ -188,6 +188,68 @@ LTRIM mylist 0 999
 
 -   与该命令功能类似的还有一个[BRPOPLPUSH](https://redis.io/commands/brpoplpush)命令
 
+### 自动创建和移除键值
+
+目前为止我们没有在push元素之前先创建一个空列表，或者当列表为空时手动移除该列表。Redis为我们提供了一项能力：当列表为空时它会自动删除键值，当列表不存在时Redis会自动创建一个代表该列表的键值然后向该列表添加元素。
+
+这项能力其实不仅仅是是列表独有的，其他Redis提供的包含多个元素的数据类型都有这项能力 - Streams、Sets、Sorted Set和Hashes都有类似的特性。
+
+总体来说，我们可以总结如下三个规则
+
+1.  当我们向聚合数据类型集合添加元素时，如果目标key不存在，Redis会先创建一个空的聚合类型集合然后再向其中添加元素
+2.  当我们从聚合数据类型集合移除元素时，如果值为空，键值会自动移除。Stream数据类型除外。
+3.  在空键值上调用类似`LLEN`这样的只读命令，或者移除元素的写入命令，产生的效果与该键值持有一个空聚合数据类型集合的执行效果是一样的
+
+规则1的示例：
+
+```powershell
+> del mylist
+(integer) 1
+> LPUSH mylist 1 2 3
+(integer) 3
+```
+
+当键值存在时，我们不能在类型上执行不匹配的操作
+
+```powershell
+> set foo bar
+OK
+> LPUSH foo 1 2 3
+(error) WRONGTYPE Operation against a key holding the wrong kind of value
+> type foo
+string
+```
+
+规则2的示例：
+
+```powershell
+> LPUSH mylist 1 2 3
+(integer) 3
+> EXISTS mylist
+(integer) 1
+> LPOP mylist
+"3"
+> LPOP mylist
+"2"
+> LPOP mylist
+"1"
+> EXISTS mylist
+(integer) 0
+```
+
+当所有的元素被弹出后键值不再存在。
+
+规则3的示例：
+
+```powershell
+> DEL mylist
+(integer) 0
+> LLEN mylist
+(integer) 0
+> LPOP mylist
+(nil)
+```
+
 ## 实现方式
 
 -   压缩列表 - 采用数组的形式来存储
