@@ -6,3 +6,7 @@
 
 ## [一个月学Docker](zh-cn/docker/README.md)
 
+# Redis
+
+## [Redis5.0](zh-cn/redis/README.md)
+
