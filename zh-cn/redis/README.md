@@ -6,3 +6,5 @@
 
 [基本数据结构-列表](zh-cn/redis/RedisList.md)
 
+[基本数据结构-哈希](zh-cn/redis/RedisHash.md)
+
