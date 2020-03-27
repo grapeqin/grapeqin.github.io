@@ -184,7 +184,7 @@ LTRIM mylist 0 999
         ```
 
 
-    
+​    
 
 -   与该命令功能类似的还有一个[BRPOPLPUSH](https://redis.io/commands/brpoplpush)命令
 

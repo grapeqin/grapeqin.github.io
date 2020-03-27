@@ -8,3 +8,7 @@
 
 [基本数据结构-哈希](zh-cn/redis/RedisHash.md)
 
+[基本数据结构-集合](zh-cn/redis/RedisSet.md)
+
+[基本数据结构-有序集合](zh-cn/redis/RedisSortedSet.md)
+
