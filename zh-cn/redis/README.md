@@ -4,11 +4,13 @@
 
 ## 一、基本数据结构
 
-[基本数据结构-列表](zh-cn/redis/RedisList.md)
+1.  [基本数据结构-字符串](zh-cn/redis/RedisString.md)
 
-[基本数据结构-哈希](zh-cn/redis/RedisHash.md)
+2.  [基本数据结构-列表](zh-cn/redis/RedisList.md)
 
-[基本数据结构-集合](zh-cn/redis/RedisSet.md)
+3.  [基本数据结构-哈希](zh-cn/redis/RedisHash.md)
 
-[基本数据结构-有序集合](zh-cn/redis/RedisSortedSet.md)
+4.  [基本数据结构-集合](zh-cn/redis/RedisSet.md)
+
+5.  [基本数据结构-有序集合](zh-cn/redis/RedisSortedSet.md)
 
