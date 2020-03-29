@@ -4,5 +4,7 @@
 
 ## 一、数组
 
+[LeetCode3-无重复字符的最长子串](zh-cn/ds/LeetCode3.md)
+
 [LeetCode442-数组中重复的数据](zh-cn/ds/LeetCode442.md)
 
