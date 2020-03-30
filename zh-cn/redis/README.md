@@ -14,3 +14,4 @@
 
 5.  [基本数据结构-有序集合](zh-cn/redis/RedisSortedSet.md)
 
+6.  [基本数据结构-基数统计](zh-cn/redis/RedisHLL.md)
