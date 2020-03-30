@@ -252,6 +252,8 @@ string
 
 ## 实现方式
 
+### 3.0版本
+
 -   压缩列表 - 采用数组的形式来存储
 -   双端链表 - 采用链表的形式来存储
 
@@ -270,5 +272,9 @@ string
 
 请参考[redis.conf](https://github.com/antirez/redis/blob/unstable/redis.conf) 中的`list-max-ziplist-size`配置项
 
+### 5.0版本
 
+-   快速列表 - quicklist
+
+    quicklist是一个双向链表，每个链表的Node结点又指向了一个Ziplist结构，这样带来的好处是能够避免Ziplist在插入删除操作时引起的全局连锁更新问题。
 
