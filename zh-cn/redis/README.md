@@ -4,23 +4,23 @@
 
 ## 一、基本数据结构
 
-1.  [基本数据结构-字符串(包括位图)](zh-cn/redis/RedisString.md)
+### [1.1基本数据结构-字符串(包括位图)](zh-cn/redis/RedisString.md)
 
-2.  [基本数据结构-列表](zh-cn/redis/RedisList.md)
+### [1.2基本数据结构-列表](zh-cn/redis/RedisList.md)
 
-3.  [基本数据结构-哈希](zh-cn/redis/RedisHash.md)
+### [1.3基本数据结构-哈希](zh-cn/redis/RedisHash.md)
 
-4.  [基本数据结构-集合](zh-cn/redis/RedisSet.md)
+### [1.4基本数据结构-集合](zh-cn/redis/RedisSet.md)
 
-5.  [基本数据结构-有序集合](zh-cn/redis/RedisSortedSet.md)
+### [1.5基本数据结构-有序集合](zh-cn/redis/RedisSortedSet.md)
 
-6.  [基本数据结构-基数统计](zh-cn/redis/RedisHLL.md)
+### [1.6基本数据结构-基数统计](zh-cn/redis/RedisHLL.md)
 
 ## 二、Redis提供的独立功能
 
-1.[管道-大批量数据插入](zh-cn/redis/RedisPipelining.md)
+### [2.1管道-大批量数据插入](zh-cn/redis/RedisPipelining.md)
 
 ## 三、Redis数据库的实现
 
-3.1 [Redis数据库](zh-cn/redis/RedisDb.md)
+### [3.1Redis数据库](zh-cn/redis/RedisDb.md)
 
