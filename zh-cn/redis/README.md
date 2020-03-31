@@ -20,3 +20,7 @@
 
 1.[管道-大批量数据插入](zh-cn/redis/RedisPipelining.md)
 
+## 三、Redis数据库的实现
+
+3.1 [Redis数据库](zh-cn/redis/RedisDb.md)
+
