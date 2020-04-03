@@ -1,6 +1,9 @@
-* [数据结构与算法](zh-cn/ds/)
-
-* [Docker](zh-cn/docker/docker-4-weeks/)
-
-* [Redis](/zh-cn/redis/)
+-   Java基础
+-   数据结构与算法
+    -   [LeetCode算法](zh-cn/ds/README.md)
+-   框架与存储
+    -   [Redis5.0](zh-cn/redis/README.md)
+-   分布式服务与容器化
+    -   [一个月学Docker](zh-cn/docker/docker-4-weeks/)
+-   云原生
 
