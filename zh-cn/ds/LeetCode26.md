@@ -59,7 +59,7 @@ public int removeDuplicates(int[] nums) {
 在前面的思路中，我们在内层循环中去依次挪动重复的元素，时间复杂度因为使用了双层循环一直保持在O( N^2^) 。这里我们引入双指针解法。声明两个指针i = 0;j=i+1;当nums[i]==nums[j]时，说明j位置的元素与i位置的元素重复，j继续往后迭代，直到找到第一个nums[j] != nums[i]，这时可以将nums[j]的元素赋值给nums[i+1]，然后i++;最后[0,i]范围内的数组即为删除重复元素后的数组，新数组的长度为i+1。
 
 <video width="100%" height="400" controls>
-  <source src="/zh-cn/ds/_media/Leetcode26_03.mp4" type="video/mp4">
+  <source src="/zh-cn/ds/_media/LeetCode26_03.mp4" type="video/mp4">
 	通过双指针删除排序数组中的重复项
 </video>
 
