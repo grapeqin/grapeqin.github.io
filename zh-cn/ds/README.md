@@ -6,5 +6,7 @@
 
 [LeetCode3-无重复字符的最长子串](zh-cn/ds/LeetCode3.md)
 
+[LeetCode26-删除排序数组中的重复项](zh-cn/ds/LeetCode26.md)
+
 [LeetCode442-数组中重复的数据](zh-cn/ds/LeetCode442.md)
 
