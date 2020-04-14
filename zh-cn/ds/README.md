@@ -4,6 +4,8 @@
 
 ## 一、数组
 
+[LeetCode1-两数之和](zh-cn/ds/LeetCode1.md)
+
 [LeetCode3-无重复字符的最长子串](zh-cn/ds/LeetCode3.md)
 
 [LeetCode26-删除排序数组中的重复项](zh-cn/ds/LeetCode26.md)
