@@ -62,6 +62,7 @@ public class ServiceC{
 
 以上这个分析过程在网络上很多文章都能看到，那我们很好奇Spring到底是采用了什么方式来解决循环依赖的呢？接下来我们通过阅读源码的方式来详细分析Spring解决循环依赖的过程，本文以Spring 5.2.5-RELEASE版源码为例。
 
+
 在分析源码之前，我先将Spring获取Bean实例的时序图放出来，以方便我们接下来的代码分析：
 
 ![](_media\spring dependency cycle.png)
