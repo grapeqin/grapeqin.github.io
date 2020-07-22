@@ -65,7 +65,7 @@ public class ServiceC{
 
 在分析源码之前，我先将Spring获取Bean实例的时序图放出来，以方便我们接下来的代码分析：
 
-![](_media\spring dependency cycle.png)
+![](_media\spring_dependency_cycle.png)
 
 一般来说，我们都是通过调用AbstractApplicationContext的getBean()方法来获取一个bean的实例，代码如下所示:
 
