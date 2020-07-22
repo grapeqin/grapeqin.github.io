@@ -4,5 +4,5 @@
 
 [WebSocket握手延迟5S的问题](zh-cn/java/websocket01.md)
 
-[Spring循环依赖](zh-cn/java/)
+[Spring循环依赖](zh-cn/java/spring_dependency_cycle.md)
 
