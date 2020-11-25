@@ -1,6 +1,7 @@
 #### 1.Java
 
 -   [WebSocket延迟问题](zh-cn/java/README.md)
+-   [Spring循环依赖](zh-cn/java/spring_dependency_cycle.md)
 
 #### 2.数据结构与算法
 

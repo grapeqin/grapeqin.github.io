@@ -1,7 +1,7 @@
 
 # grapeqin
 
-> 从今天开始,永不放弃.
+> 认知升级，终身学习.
 
 
 [GitHub](https://github.com/grapeqin/)
