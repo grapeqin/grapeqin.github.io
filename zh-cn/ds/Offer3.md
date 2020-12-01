@@ -18,15 +18,15 @@
 ```java
 class Solution {
     public int findRepeatNumber(int[] nums) {
-      	// 声明一个与数组大小相同大小的HashSet集合
+        //声明一个与数组大小相同大小的HashSet集合
         Set<Integer> set = new HashSet<>(nums.length);
-      	// 遍历数组
+        //遍历数组
         for(int num : nums){
-          	// 集合中包含数字时,说明当前数字已经重复
+            //集合中包含数字时,说明当前数字已经重复
             if(set.contains(num)){
                 return num;
             }
-          	// 集合中不包含数字则将数字添加到集合
+            //集合中不包含数字则将数字添加到集合
             set.add(num);
         }
         return 0;
@@ -49,15 +49,15 @@ class Solution {
 ```java
 class Solution {
     public int findRepeatNumber(int[] nums) {
-       	//数组遍历
+        //数组遍历
         for(int i=0;i<nums.length;i++){
-          	//第i个下标处的元素不是i，就一直交换，直到把i这个元素归位到第i个下标处为止
+           //第i个下标处的元素不是i，就一直交换，直到把i这个元素归位到第i个下标处为止
             while(i != nums[i]){
-              	// 一旦i这个位置的元素与以nums[i]为下标的元素相等，那么这个元素就是重复的元素,直接返回
+                //一旦i这个位置的元素与以nums[i]为下标的元素相等，那么这个元素就是重复的元素,直接返回
                 if(nums[i] == nums[nums[i]]){
                     return nums[i];
                 }
-              	// 如果不相等,这两个下标处的元素互换位置
+                //如果不相等,这两个下标处的元素互换位置
                 int temp = nums[i];
                 nums[i] = nums[temp];
                 nums[temp] = temp;
@@ -81,15 +81,15 @@ class Solution {
 ```java
 class Solution {
     public int findRepeatNumber(int[] nums) {
-      	//遍历数组
+        //遍历数组
         for(int i=0;i<nums.length;i++){
-          	//取元素nums[i]的下标值,可能为负值,但数组的下标必须非负,所以这里要取绝对值
+            //取元素nums[i]的下标值,可能为负值,但数组的下标必须非负,所以这里要取绝对值
             int index = Math.abs(nums[i]);
-          	// 如果index下标处的元素小于0,说明index这个元素在数组中已经出现过,可以直接返回
+            //如果index下标处的元素小于0,说明index这个元素在数组中已经出现过,可以直接返回
             if(nums[index] < 0){
                 return index;
             }
-          	// index下标的元素取反,标识在数组中出现过
+            //index下标的元素取反,标识在数组中出现过
             nums[index] = -nums[index];
         }
         return 0;
@@ -110,15 +110,15 @@ class Solution {
 ```java
 class Solution {
     public int findRepeatNumber(int[] nums) {
-      	//遍历数组
+        //遍历数组
         for(int i=0;i<nums.length;i++){
-          	//当nums[i]的值为负数时,先+1再取反还原数组的下标值
+            //当nums[i]的值为负数时,先+1再取反还原数组的下标值
             int index = nums[i] < 0 ? -(nums[i]+1) : nums[i];
-          	// index下标的值为负,表示该位置的元素重复,直接返回
+            //index下标的值为负,表示该位置的元素重复,直接返回
             if(nums[index] < 0){
                 return index;
             }
-          	// 取反之前先+1,能够解决0重复的时候取反无法区分的问题
+            //取反之前先+1,能够解决0重复的时候取反无法区分的问题
             nums[index] = -(nums[index]+1);
         }
         return 0;
