@@ -14,5 +14,7 @@
 
 [LeetCode442-数组中重复的数据](zh-cn/ds/LeetCode442.md)
 
-[Offer3-数组中重复的数字](zh-cn/ds/Offer3.md)
+[Offer03-数组中重复的数字](zh-cn/ds/Offer03.md)
+
+[Offer06-从尾到头打印链表](zh-cn/ds/Offer06.md)
 
