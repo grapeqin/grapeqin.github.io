@@ -16,5 +16,9 @@
 
 [Offer03-数组中重复的数字](zh-cn/ds/Offer03.md)
 
+
+
+## 二、链表
+
 [Offer06-从尾到头打印链表](zh-cn/ds/Offer06.md)
 
