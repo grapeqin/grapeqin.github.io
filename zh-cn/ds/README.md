@@ -4,19 +4,19 @@
 
 ## 一、数组
 
-[LeetCode1-两数之和](zh-cn/ds/LeetCode1.md)
+[两数之和](zh-cn/ds/Array01.md)
+
+[数组中重复的数据](zh-cn/ds/Array2.md)
+
+[数组中重复的数字](zh-cn/ds/Array3.md)
+
+[二维数组中的查找](zh-cn/ds/Array4.md)
+
+[LeetCode26-删除排序数组中的重复项](zh-cn/ds/Array5.md)
 
 [LeetCode3-无重复字符的最长子串](zh-cn/ds/LeetCode3.md)
 
-[LeetCode26-删除排序数组中的重复项](zh-cn/ds/LeetCode26.md)
-
 [LeetCode27-移除元素](zh-cn/ds/LeetCode27.md)
-
-[LeetCode442-数组中重复的数据](zh-cn/ds/LeetCode442.md)
-
-[Offer03-数组中重复的数字](zh-cn/ds/Offer03.md)
-
-
 
 ## 二、链表
 
