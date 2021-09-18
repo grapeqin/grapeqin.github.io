@@ -2,6 +2,8 @@
 
 -   [WebSocket延迟问题](zh-cn/java/README.md)
 -   [Spring循环依赖](zh-cn/java/spring_dependency_cycle.md)
+-   [Java动态代理](zh-cn/java/java_proxy.md)
+-   [Java OOM案例一](zh-cn/java/java_oom_sample1.md)
 
 #### 2.数据结构与算法
 
