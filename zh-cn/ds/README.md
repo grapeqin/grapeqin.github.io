@@ -22,3 +22,8 @@
 
 [Offer06-从尾到头打印链表](zh-cn/ds/Offer06.md)
 
+
+## 三、字符串匹配
+
+[LeetCode28-字符串匹配](zh-cn/ds/LeetCode28.md)
+
