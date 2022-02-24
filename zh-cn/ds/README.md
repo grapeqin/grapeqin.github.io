@@ -29,5 +29,5 @@
 
 ## 四、二叉树
 
-[二叉树的遍历](-BinaryTreeSearch.md)
+[二叉树的遍历](zh-cn/ds/BinaryTreeSearch.md)
 
