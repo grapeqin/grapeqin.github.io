@@ -1,6 +1,6 @@
-# LeetCode算法
+# 数据结构
 
->   按照LeetCode题目的类型，依次解题，重点集中在Easy和Medium难度的，主要目的在于锻炼和积累算法的基本功。
+>   主要参考LeetCode题目的类型，依次解题，重点集中在Easy和Medium难度的，主要目的在于锻炼和积累算法的基本功。
 
 ## 一、数组
 
@@ -26,4 +26,8 @@
 ## 三、字符串匹配
 
 [LeetCode28-字符串匹配](zh-cn/ds/LeetCode28.md)
+
+## 四、二叉树
+
+[二叉树的遍历](-BinaryTreeSearch.md)
 
