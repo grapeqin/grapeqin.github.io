@@ -30,4 +30,5 @@
 ## 四、二叉树
 
 [二叉树的遍历](zh-cn/ds/BinaryTreeSearch.md)
+[二叉搜索树](zh-cn/ds/BinarySearchTree.md)
 
