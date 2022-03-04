@@ -12,7 +12,7 @@
 
 对于下面这棵二叉搜索树：
 
-![bst01](\_media\bst01.png)
+![bst01](_media\bst01.png)
 
 如何查找**19**这个节点是否存在？
 
@@ -291,7 +291,7 @@ public void delete(int target) {
     if(pp == null){
         //删除树根
         root = child;
-    }else if(p != pp.left){
+    }else if(p == pp.left){
         pp.left = child;
     }else{
         pp.right = child;
