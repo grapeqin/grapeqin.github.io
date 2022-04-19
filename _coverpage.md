@@ -1,7 +1,7 @@
 
 # grapeqin
 
-> 终身学习.
+> 持续学习.
 
 
 [GitHub](https://github.com/grapeqin/)
