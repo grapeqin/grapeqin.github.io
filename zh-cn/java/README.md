@@ -11,3 +11,5 @@
 [Java OOM案例一](zh-cn/java/java_oom_sample1.md)
 
 [Java多线程打印A、B、C](zh-cn/java/java_multithread_printABC.md)
+
+[Java8 Stream parallel引起的问题](zh-cn/java/java8_stream_parallel.md)
