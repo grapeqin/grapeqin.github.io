@@ -26,3 +26,7 @@
 
 #### [3.2Redis RDB持久化](zh-cn/redis/RedisRdb.md)
 
+
+### 4.Redis架构简介
+
+#### [4.1 Redis架构](zh-cn/redis/architecture.md)
