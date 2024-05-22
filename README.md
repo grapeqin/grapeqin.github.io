@@ -21,4 +21,4 @@
 
 #### 6.专题课程
 
--   [极客时间](zh-cn/geek courses/README.md)
+-   [极客时间](<zh-cn/geek courses/README.md>)

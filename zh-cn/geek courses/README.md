@@ -2,4 +2,4 @@
 
 # Spring
 
--   [Spring编程常见错误50例](zh-cn/geek courses/spring/README.md)
+-   [Spring编程常见错误50例](<zh-cn/geek courses/spring/README.md>)
