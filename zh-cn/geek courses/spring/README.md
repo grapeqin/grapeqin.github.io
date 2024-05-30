@@ -9,3 +9,7 @@
 4. [04 Spring Bean 生命周期常见错误](</zh-cn/geek courses/spring/04 Spring Bean 生命周期常见错误.md>)
 
 5. [05 Spring AOP 常见错误（上）](</zh-cn/geek courses/spring/05 Spring AOP 常见错误（上）.md>)
+
+6. [06 Spring AOP 常见错误（下）](06 Spring AOP 常见错误（下）.md)
+
+7. [07 Spring事件常见错误](07 Spring事件常见错误.md)
