@@ -14,5 +14,5 @@
 
 [07 Spring事件常见错误](</zh-cn/geek courses/spring/07 Spring事件常见错误.md>)
 
-[07 Spring事件常见错误](</zh-cn/geek courses/spring/07 Spring事件常见错误.md>)
+[08 答疑现场：Spring Core 篇思考题合集](</zh-cn/geek courses/spring/08 答疑现场：Spring Core 篇思考题合集.md>)
 
