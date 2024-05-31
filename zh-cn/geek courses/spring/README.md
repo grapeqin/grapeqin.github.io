@@ -16,3 +16,7 @@
 
 [08 答疑现场：Spring Core 篇思考题合集](</zh-cn/geek courses/spring/08 答疑现场：Spring Core 篇思考题合集.md>)
 
+[09 Spring Web URL 解析常见错误](</zh-cn/geek courses/spring/09 Spring Web URL 解析常见错误.md>)
+
+[10 Spring Web Header 解析常见错误](</zh-cn/geek courses/spring/10 Spring Web Header 解析常见错误.md>)
+
