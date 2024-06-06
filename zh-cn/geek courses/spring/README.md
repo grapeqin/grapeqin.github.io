@@ -35,3 +35,11 @@
 [17 答疑现场：Spring Web 篇思考题合集](</zh-cn/geek courses/spring/17 答疑现场：Spring Web 篇思考题合集.md>)
 
 [18 Spring Data 常见错误](</zh-cn/geek courses/spring/18 Spring Data 常见错误.md>)
+
+[19 Spring 事务常见错误（上）](</zh-cn/geek courses/spring/19 Spring 事务常见错误（上）.md>)
+
+[20 Spring 事务常见错误（下）](</zh-cn/geek courses/spring/20 Spring 事务常见错误（下）.md>)
+
+[21 Spring Rest Template 常见错误](</zh-cn/geek courses/spring/21 Spring Rest Template 常见错误.md>)
+
+[22 Spring Test 常见错误](</zh-cn/geek courses/spring/22 Spring Test 常见错误.md>)
