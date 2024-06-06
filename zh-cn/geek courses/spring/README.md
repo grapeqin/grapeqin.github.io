@@ -27,3 +27,11 @@
 [13 Spring Web 过滤器使用常见错误（上）](</zh-cn/geek courses/spring/13 Spring Web 过滤器使用常见错误（上）.md>)
 
 [14 Spring Web 过滤器使用常见错误（下）](</zh-cn/geek courses/spring/14 Spring Web 过滤器使用常见错误（下）.md>)
+
+[15 Spring Security 常见错误](</zh-cn/geek courses/spring/15 Spring Security 常见错误.md>)
+
+[16 Spring Exception 常见错误](</zh-cn/geek courses/spring/16 Spring Exception 常见错误.md>)
+
+[17 答疑现场：Spring Web 篇思考题合集](</zh-cn/geek courses/spring/17 答疑现场：Spring Web 篇思考题合集.md>)
+
+[18 Spring Data 常见错误](</zh-cn/geek courses/spring/18 Spring Data 常见错误.md>)
