@@ -16,6 +16,8 @@
 
 [08 答疑现场：Spring Core 篇思考题合集](</zh-cn/geek courses/spring/08 答疑现场：Spring Core 篇思考题合集.md>)
 
+[导读 5分钟轻松了解一个HTTP请求的处理过程](</zh-cn/geek courses/spring/导读 5分钟轻松了解一个HTTP请求的处理过程.md>)
+
 [09 Spring Web URL 解析常见错误](</zh-cn/geek courses/spring/09 Spring Web URL 解析常见错误.md>)
 
 [10 Spring Web Header 解析常见错误](</zh-cn/geek courses/spring/10 Spring Web Header 解析常见错误.md>)
@@ -43,3 +45,9 @@
 [21 Spring Rest Template 常见错误](</zh-cn/geek courses/spring/21 Spring Rest Template 常见错误.md>)
 
 [22 Spring Test 常见错误](</zh-cn/geek courses/spring/22 Spring Test 常见错误.md>)
+
+[23 答疑现场：Spring 补充篇思考题合集](</zh-cn/geek courses/spring/23 答疑现场：Spring 补充篇思考题合集.md>)
+
+[知识回顾 系统梳理Spring编程错误根源](</zh-cn/geek courses/spring/知识回顾 系统梳理Spring编程错误根源.md>)
+
+[结束语 问题总比解决办法多](</zh-cn/geek courses/spring/结束语 问题总比解决办法多.md>)
