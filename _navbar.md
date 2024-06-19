@@ -13,7 +13,7 @@
     
 - 优秀网课
 
-  -   [极客课程](zh-cn/geek courses/README.md)
+  -   [极客课程](zh-cn/course/README.md)
 
   
 
