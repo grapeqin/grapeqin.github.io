@@ -15,3 +15,9 @@
 [06 我这样的风格能做管理吗？](</zh-cn/geek courses/tech-management/06 我这样的风格能做管理吗？.md>)
 
 [07 我能做好管理吗，大家服我吗？](</zh-cn/geek courses/tech-management/07 我能做好管理吗，大家服我吗？.md>)
+
+[08 管理到底都做哪些事儿？](</zh-cn/geek courses/tech-management/08 管理到底都做哪些事儿？.md>)
+
+[09 从工程师到管理者，角色都发生了哪些变化？](</zh-cn/geek courses/tech-management/09 从工程师到管理者，角色都发生了哪些变化？.md>)
+
+[10 新经理常踩的坑儿有哪些？](</zh-cn/geek courses/tech-management/10 新经理常踩的坑儿有哪些？.md>)
