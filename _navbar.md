@@ -11,9 +11,9 @@
     -   [精选文章](/zh-cn/docker/README.md)
     -   [一个月学Docker](zh-cn/docker/docker-4-weeks/)
     
-- 优秀网课
+- 优秀课程
 
-  -   [极客课程](zh-cn/course/README.md)
+  -   [技术课程](zh-cn/course/README.md)
 
   
 

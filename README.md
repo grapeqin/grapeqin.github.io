@@ -17,6 +17,6 @@
 -   [一个月学Docker](zh-cn/docker/docker-4-weeks/)
 
 
-#### 5.专题课程
+#### 5.优秀课程
 
--   [极客时间](<zh-cn/course/README.md>)
+-   [技术课程](<zh-cn/course/README.md>)
