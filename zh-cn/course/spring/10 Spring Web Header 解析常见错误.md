@@ -42,7 +42,7 @@
 
 对于一个 Header 的解析，主要有两种方式，分别实现在 RequestHeaderMethodArgumentResolver 和 RequestHeaderMapMethodArgumentResolver 中，它们都继承于 AbstractNamedValueMethodArgumentResolver，但是应用的场景不同，我们可以对比下它们的 supportsParameter()，来对比它们适合的场景：
 
-![](10%20Spring%20Web%20Header%20%E8%A7%A3%E6%9E%90%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/0cbf5aa76e434cac8a00a95cfc52fe17.jpg)
+![](assets/10_01.jpg)
 
 在上图中，左边是 RequestHeaderMapMethodArgumentResolver 的方法。通过比较可以发现，对于一个标记了 @RequestHeader 的参数，如果它的类型是 Map，则使用 RequestHeaderMapMethodArgumentResolver，否则一般使用的是 RequestHeaderMethodArgumentResolver。
 
@@ -208,7 +208,7 @@ private boolean checkSpecialHeader(String name, String value) { if (name.equalsI
 
 最终我们获取到的 Response 如下：
 
-![](10%20Spring%20Web%20Header%20%E8%A7%A3%E6%9E%90%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/e24f8fde8cdd4dd08be4fc3f337c74d2.jpg)
+![](assets/10_02.jpg)
 
 从上图可以看出，Headers 里并没有 Content-Type，而我们设置的 Content-Type 已经作为 coyoteResponse 成员的值了。当然也不意味着后面一定不会返回，我们可以继续跟踪后续执行。
 
@@ -242,7 +242,7 @@ for (HttpMessageConverter<?> converter : this.messageConverters) { GenericHttpMe
 
 如代码所示，即结合 targetType（String）、valueType（String）、selectedMediaType（MediaType#TEXT\_PLAIN）三个信息来决策可以使用哪种消息 Converter。常见候选 Converter 可以参考下图：
 
-![](10%20Spring%20Web%20Header%20%E8%A7%A3%E6%9E%90%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/4730528ead9b4c92a29dfa3ef10bb648.jpg)
+![](assets/10_03.jpg)
 
 最终，本案例选择的是 StringHttpMessageConverter，在最终调用父类方法 AbstractHttpMessageConverter#write 执行转化时，会尝试添加 Content-Type。具体代码参考 AbstractHttpMessageConverter#addDefaultHeaders：
 

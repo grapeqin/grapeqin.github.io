@@ -42,7 +42,7 @@ HTTP/1.1 400 Content-Type: application/json { "timestamp": "2021-01-03T00:47:23.
 
 假设我们构建Web服务使用的是Spring Boot技术，我们可以参考下面的时序图了解它的核心执行步骤：
 
-![](12%20Spring%20Web%20%E5%8F%82%E6%95%B0%E9%AA%8C%E8%AF%81%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/936435d2eaba4a30a37276cce2ca80d8.jpg)
+![](assets/12_01.jpg)
 
 如上图所示，当一个请求来临时，都会进入 DispatcherServlet，执行其 doDispatch()，此方法会根据 Path、Method 等关键信息定位到负责处理的 Controller 层方法（即 addStudent 方法），然后通过反射去执行这个方法，具体反射执行过程参考下面的代码（InvocableHandlerMethod#invokeForRequest）：
 
@@ -58,7 +58,7 @@ public Object invokeForRequest(NativeWebRequest request, @Nullable ModelAndViewC
 
 那么如何构建出这个方法参数实例？Spring 内置了相当多的 HandlerMethodArgumentResolver，参考下图：
 
-![](12%20Spring%20Web%20%E5%8F%82%E6%95%B0%E9%AA%8C%E8%AF%81%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/1e1b6c3f990d4554ad99711af7ca1ed4.jpg)
+![](assets/12_02.jpg)
 
 当试图构建出一个方法参数时，会遍历所有支持的解析器（Resolver）以找出适合的解析器，查找代码参考HandlerMethodArgumentResolverComposite#getArgumentResolver：
 
@@ -161,7 +161,7 @@ private CascadingMetaDataBuilder getCascadingMetaData(Type type, AnnotatedElemen
 
 当修正完问题后，我们会发现校验生效了。而如果此时去调试修正后的案例代码，会看到 phone 字段 MetaData 信息中的 cascading 确实为 true 了，参考下图：
 
-![](12%20Spring%20Web%20%E5%8F%82%E6%95%B0%E9%AA%8C%E8%AF%81%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/61adff03683345cca71f42e95e6318f6.jpg)
+![](assets/12_03.jpg)
 
 另外，假设我们不去解读源码，我们很可能会按照案例 1 所述的其他修正方法去修正这个问题。例如，使用 @Validated 来修正这个问题，但是此时你会发现，不考虑源码是否支持，代码本身也编译不过，这主要在于 @Validated 的定义是不允许修饰一个 Field 的：
 
@@ -199,7 +199,7 @@ private CascadingMetaDataBuilder getCascadingMetaData(Type type, AnnotatedElemen
 
 如果我们稍微留心点的话，就会发现其实 @Size 的 Javadoc 已经明确了这种情况，参考下图：
 
-![](12%20Spring%20Web%20%E5%8F%82%E6%95%B0%E9%AA%8C%E8%AF%81%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/7c04e256f690499b9dd2a30150988dac.jpg)
+![](assets/12_04.jpg)
 
 如图所示，”null elements are considered valid” 很好地解释了约束不住null的原因。当然纸上得来终觉浅，我们还需要从源码级别解读下@Size 的校验过程。
 

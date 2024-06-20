@@ -90,13 +90,13 @@ basic.request { # The consistency level. # # Required: yes # Modifiable at runti
 
 所以当我们去执行读写操作时，我们都会使用 LOCAL\_ONE。参考下面的运行时配置调试截图：
 
-![](18%20Spring%20Data%20%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/31ec5f80efbe4d339479857907531c9a.jpg)
+![](assets/18_01.jpg)
 
 如果你稍微了解下 Cassandra 的话，你就知道 Cassandra 使用的一个核心原则，就是要使得R（读）+W（写）>N，即读和写的节点数之和需要大于备份数。
 
 例如，假设我们的数据备份是 3 份，待写入的数据分别存储在 A、B、C 三个节点上。那么常见的搭配是 R（读）和 W（写）的一致性都是 LOCAL\_QURAM，这样可以保证能及时读到写入的数据；而假设在这种情况下，我们读写都是用 LOCAL\_ONE，那么则可能发生这样的情况，即用户写入一个节点 A 就返回了，但是用户 B 立马读的节点是 C，且由于是 LOCAL\_ONE 一致性，则读完 C 就可以立马返回。此时，就会出现数据读取可能落空的情况。
 
-![](18%20Spring%20Data%20%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/33837e984a8348839e534d8b0b531004.jpg)
+![](assets/18_02.jpg)
 
 那么考虑一个问题，为什么 Cassandra driver 默认是使用 LOCAL\_ONE 呢？
 
@@ -118,7 +118,7 @@ basic.request { # The consistency level. # # Required: yes # Modifiable at runti
 
 有时候，我们使用 Spring Data 做连接时，会比较在意我们的内存占用。例如我们使用 Spring Data Cassandra 操作 Cassandra 时，可能会发现类似这样的问题：
 
-![](18%20Spring%20Data%20%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/ff02bcc413d74e08b8ba4c797e0d6e2b.jpg)
+![](assets/18_03.jpg)
 
 Spring Data Cassandra 在连接 Cassandra 之后，会获取 Cassandra 的 Metadata 信息，这个内存占用量是比较大的，因为它存储了数据的 Token Range 等信息。如上图所示，在我们的应用中，占用 40M 以上已经不少了，但问题是为什么有 4 个占用 40 多 M 呢？难道不是只建立一个连接么？
 
@@ -154,7 +154,7 @@ public class MyService { public MyService(String name){ System.err.println(name)
 
 为了让程序启动，我们不能将 BaseConfig 和 Config 都放到 Application 的扫描范围。我们可以按如下结构组织代码：
 
-![](18%20Spring%20Data%20%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/d1da48ca1fa14810997f594c01f1c75e.jpg)
+![](assets/18_04.jpg)
 
 最终我们会发现，当程序启动时，我们只有一个 MyService 的 Bean 产生，输出日志如下：
 

@@ -16,9 +16,7 @@
 
 -   [一个月学Docker](zh-cn/docker/docker-4-weeks/)
 
-#### 5.云原生
 
+#### 5.专题课程
 
-#### 6.专题课程
-
--   [极客时间](<zh-cn/geek courses/README.md>)
+-   [极客时间](<zh-cn/course/README.md>)

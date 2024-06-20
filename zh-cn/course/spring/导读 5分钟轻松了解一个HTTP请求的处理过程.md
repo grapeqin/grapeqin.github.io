@@ -40,7 +40,7 @@ public class HttpRequestHandler{ Map<RequestKey, Method> mapper = new HashMap<>(
 
 首先，解析 HTTP 请求。对于 Spring 而言，它本身并不提供通信层的支持，它是依赖于Tomcat、Jetty等容器来完成通信层的支持，例如当我们引入Spring Boot时，我们就间接依赖了Tomcat。依赖关系图如下：
 
-![](%E5%AF%BC%E8%AF%BB%205%E5%88%86%E9%92%9F%E8%BD%BB%E6%9D%BE%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%AAHTTP%E8%AF%B7%E6%B1%82%E7%9A%84%E5%A4%84%E7%90%86%E8%BF%87%E7%A8%8B/87f83fe678694b96afb78d62b461ba25.jpg)
+![](assets/daodu_01.jpg)
 
 另外，正是这种自由组合的关系，让我们可以做到直接置换容器而不影响功能。例如我们可以通过下面的配置从默认的Tomcat切换到Jetty：
 
@@ -52,7 +52,7 @@ public class HttpRequestHandler{ Map<RequestKey, Method> mapper = new HashMap<>(
 
 关于Tomcat如何被启动，你可以通过下面的调用栈来大致了解下它的过程：
 
-![](%E5%AF%BC%E8%AF%BB%205%E5%88%86%E9%92%9F%E8%BD%BB%E6%9D%BE%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%AAHTTP%E8%AF%B7%E6%B1%82%E7%9A%84%E5%A4%84%E7%90%86%E8%BF%87%E7%A8%8B/4b8b3a9eec9046149c4f6c8481a99de6.jpg)
+![](assets/daodu_02.jpg)
 
 说白了，就是调用下述代码行就会启动Tomcat：
 
@@ -80,11 +80,11 @@ SpringApplication.run(Application.class, args);
 
 上述代码会完成请求事件的监听和处理，最终在processKey中把请求事件丢入线程池去处理。请求事件的接收具体调用栈如下：
 
-![](%E5%AF%BC%E8%AF%BB%205%E5%88%86%E9%92%9F%E8%BD%BB%E6%9D%BE%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%AAHTTP%E8%AF%B7%E6%B1%82%E7%9A%84%E5%A4%84%E7%90%86%E8%BF%87%E7%A8%8B/88c01a6e7cfb404a8ab742b37559406c.jpg)
+![](assets/daodu_03.jpg)
 
 线程池对这个请求的处理的调用栈如下：
 
-![](%E5%AF%BC%E8%AF%BB%205%E5%88%86%E9%92%9F%E8%BD%BB%E6%9D%BE%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%AAHTTP%E8%AF%B7%E6%B1%82%E7%9A%84%E5%A4%84%E7%90%86%E8%BF%87%E7%A8%8B/27da4f2b056b4c709656e95e0d37c27e.jpg)
+![](assets/daodu_04.jpg)
 
 在上述调用中，最终会进入Spring Boot的处理核心，即DispatcherServlet（上述调用栈没有继续截取完整调用，所以未显示）。可以说，DispatcherServlet是用来处理HTTP请求的中央调度入口程序，为每一个 Web 请求映射一个请求的处理执行体（API controller/method）。
 
@@ -110,7 +110,7 @@ protected void doDispatch(HttpServletRequest request, HttpServletResponse respon
 
 寻找方法参考DispatcherServlet#getHandler，具体的查找远比开始给出的Map查找来得复杂，但是无非还是一个根据请求寻找候选执行方法的过程，这里我们可以通过一个调试视图感受下这种对应关系：
 
-![](%E5%AF%BC%E8%AF%BB%205%E5%88%86%E9%92%9F%E8%BD%BB%E6%9D%BE%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%AAHTTP%E8%AF%B7%E6%B1%82%E7%9A%84%E5%A4%84%E7%90%86%E8%BF%87%E7%A8%8B/107d4853543d466599f484fc26a98d4e.jpg)
+![](assets/daodu_05.jpg)
 
 这里的关键映射Map，其实就是上述调试视图中的RequestMappingHandlerMapping。
 
@@ -118,7 +118,7 @@ protected void doDispatch(HttpServletRequest request, HttpServletResponse respon
 
 这点可以参考下面的调试视图来验证这个结论，参考代码org.springframework.web.method.support.InvocableHandlerMethod#doInvoke：
 
-![](%E5%AF%BC%E8%AF%BB%205%E5%88%86%E9%92%9F%E8%BD%BB%E6%9D%BE%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%AAHTTP%E8%AF%B7%E6%B1%82%E7%9A%84%E5%A4%84%E7%90%86%E8%BF%87%E7%A8%8B/70da4564e8b44f1682472b6d8a1a304c.jpg)
+![](assets/daodu_06.jpg)
 
 最终我们是通过反射来调用执行方法的。
 
@@ -128,7 +128,7 @@ protected void doDispatch(HttpServletRequest request, HttpServletResponse respon
 
 它的构建完成后，会调用afterPropertiesSet来做一些额外的事，这里我们可以先看下它的调用栈：
 
-![](%E5%AF%BC%E8%AF%BB%205%E5%88%86%E9%92%9F%E8%BD%BB%E6%9D%BE%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%AAHTTP%E8%AF%B7%E6%B1%82%E7%9A%84%E5%A4%84%E7%90%86%E8%BF%87%E7%A8%8B/ec78729486f54bdea3735437ad3f59ea.jpg)
+![](assets/daodu_07.jpg)
 
 其中关键的操作是AbstractHandlerMethodMapping#processCandidateBean方法：
 

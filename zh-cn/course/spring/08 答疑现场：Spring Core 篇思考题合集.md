@@ -52,7 +52,7 @@
 
 查看决策谁优先的源码，最终使用属性名来匹配的执行情况可参考DefaultListableBeanFactory#matchesBeanName方法的调试视图：
 
-![](08%20%E7%AD%94%E7%96%91%E7%8E%B0%E5%9C%BA%EF%BC%9ASpring%20Core%20%E7%AF%87%E6%80%9D%E8%80%83%E9%A2%98%E5%90%88%E9%9B%86/5ebdca5725f745d59e7b18fd160d3c19.jpg)
+![](assets/08_01.jpg)
 
 我们可以看到实现的关键其实是下面这行语句：
 
@@ -182,11 +182,11 @@ public int compare(@Nullable Object o1, @Nullable Object o2) { return doCompare(
 
 继续跟踪 getOrder() 的执行细节，我们会发现对于我们的案例，这个方法会找出配置切面的 Bean 的 Order值。这里可以参考 BeanFactoryAspectInstanceFactory#getOrder 的调试视图验证这个结论：
 
-![](08%20%E7%AD%94%E7%96%91%E7%8E%B0%E5%9C%BA%EF%BC%9ASpring%20Core%20%E7%AF%87%E6%80%9D%E8%80%83%E9%A2%98%E5%90%88%E9%9B%86/57691fdf7c94454a9da898113608d70d.jpg)
+![](assets/08_02.jpg)
 
 上述截图中，aopConfig2 即是我们配置切面的 Bean 的名称。这里再顺带提供出调用栈的截图，以便你做进一步研究：
 
-![](08%20%E7%AD%94%E7%96%91%E7%8E%B0%E5%9C%BA%EF%BC%9ASpring%20Core%20%E7%AF%87%E6%80%9D%E8%80%83%E9%A2%98%E5%90%88%E9%9B%86/5da30f9691264c2eb3e71f15b7d04da6.jpg)
+![](assets/08_03.jpg)
 
 现在我们就知道了，将不同的增强方法放置到不同的切面配置类中，使用不同的 Order 值来修饰是可以影响顺序的。相反，如果都是在一个配置类中，自然不会影响顺序，所以这也是当初我的方案中没有重点介绍 sortAdvisors 方法的原因，毕竟当时我们给出的案例都只有一个 AOP 配置类。
 

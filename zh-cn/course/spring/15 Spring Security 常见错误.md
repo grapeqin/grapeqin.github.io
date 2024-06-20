@@ -26,7 +26,7 @@
 
 但是当我们发送一个请求时（例如 [http://localhost:8080/admin](http://localhost:8080/admin) ），就会报错java.lang.IllegalArgumentException: There is no PasswordEncoder mapped for the id “null”，具体错误堆栈信息如下：
 
-![](15%20Spring%20Security%20%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/f54bd05200144399840b22c324300059.jpg)
+![](assets/15_01.jpg)
 
 所以，如果我们不按照最新版本的 Spring Security 教程操作，就很容易忘记 PasswordEncoder 这件事。那么为什么缺少它就会报错，它的作用又在哪？接下来我们具体解析下。
 
@@ -56,7 +56,7 @@ public static PasswordEncoder createDelegatingPasswordEncoder() { String encodin
 
 我们可以换一个视角来看下这个DelegatingPasswordEncoder长什么样：
 
-![](15%20Spring%20Security%20%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/c57ffae16b5a4bf3a83e3216c37f9539.jpg)
+![](assets/15_02.jpg)
 
 通过上图可以看出，其实它是多个内置的 PasswordEncoder 集成在了一起。
 
@@ -86,7 +86,7 @@ auth.inMemoryAuthentication() .withUser("admin").password("{MD5}pass").roles("AD
 
 此时，以调试方式运行程序，你会发现，这个时候已经有了 id，且取出了合适的 PasswordEncoder。
 
-![](15%20Spring%20Security%20%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/81854131bd3b4924ad6600f01d6927b9.jpg)
+![](assets/15_03.jpg)
 
 说到这里，相信你已经知道问题的来龙去脉了。问题的根源还是在于我们需要一个PasswordEncoder，而当前案例没有给我们指定出来。
 
@@ -130,7 +130,7 @@ public final class NoOpPasswordEncoder implements PasswordEncoder { public Strin
 
 然后我们从浏览器访问我们的接口 [http://localhost:8080/admin](http://localhost:8080/admin)，使用上述 3 个用户登录，你会发现用户 admin1 可以登录，而 admin2 设置了同样的角色却不可以登陆，并且提示下面的错误：
 
-![](15%20Spring%20Security%20%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/ce47e1607eb64191aafc9af9203af18d.jpg)
+![](assets/15_04.jpg)
 
 如何理解这个现象？
 
@@ -160,7 +160,7 @@ public static UserBuilder withUserDetails(UserDetails userDetails) { return with
 
 此时我们可以得出一个结论：通过上述两种方式设置的相同 Role（即 ADMIN），最后存储的 Role 却不相同，分别为 ROLE\_ADMIN 和 ADMIN。那么为什么只有 ROLE\_ADMIN 这种用户才能通过授权呢？这里我们不妨通过调试视图看下授权的调用栈，截图如下：
 
-![](15%20Spring%20Security%20%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/cf2d14ec8f4049dd9bfa4813fb19dbd3.jpg)
+![](assets/15_05.jpg)
 
 对于案例的代码，最终是通过 “UsernamePasswordAuthenticationFilter” 来完成授权的。而且从调用栈信息可以大致看出，授权的关键其实就是查找用户，然后校验权限。查找用户的方法可参考 InMemoryUserDetailsManager#loadUserByUsername，即根据用户名查找已添加的用户：
 
@@ -170,7 +170,7 @@ public UserDetails loadUserByUsername(String username) throws UsernameNotFoundEx
 
 完成账号是否过期、是否锁定等检查后，我们会把这个用户转化为下面的 Token（即 UsernamePasswordAuthenticationToken）供后续使用，关键信息如下：
 
-![](15%20Spring%20Security%20%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/870762f5943147259bd77d8ce35ae399.jpg)
+![](assets/15_06.jpg)
 
 最终在判断角色时，我们会通过 UsernamePasswordAuthenticationToken 的父类方法 AbstractAuthenticationToken#getAuthorities 来取到上述截图中的 ADMIN。而判断是否具备某个角色时，使用的关键方法是 SecurityExpressionRoot#hasAnyAuthorityName：
 
@@ -220,6 +220,6 @@ public int vote(Authentication authentication, FilterInvocation fi, Collection<C
 
 通过案例 1 的学习，我们知道在 Spring Boot 开启 Spring Security 时，访问需要授权的 API 会自动跳转到如下登录页面，你知道这个页面是如何产生的么？
 
-![](15%20Spring%20Security%20%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/ed6c2836fb09418fa66771ae7c73b3c3.jpg)
+![](assets/15_07.jpg)
 
 期待你的思考，我们留言区见！

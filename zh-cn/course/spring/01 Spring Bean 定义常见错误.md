@@ -10,7 +10,7 @@
 
 在构建 Web 服务时，我们常使用 Spring Boot 来快速构建。例如，使用下面的包结构和相关代码来完成一个简易的 Web 版 HelloWorld：
 
-![](https://learn.lianglianglee.com/%e4%b8%93%e6%a0%8f/Spring%e7%bc%96%e7%a8%8b%e5%b8%b8%e8%a7%81%e9%94%99%e8%af%af50%e4%be%8b/assets/06dff389d2fe498f83b115052e2c37cc.jpg)
+![](assets/01_01.jpg)
 
 其中，负责启动程序的 Application 类定义如下：
 
@@ -28,7 +28,7 @@ package com.spring.puzzle.class1.example1.application //省略 import @RestContr
 
 但是，假设有一天，当我们需要添加多个类似的 Controller，同时又希望用更清晰的包层次和结构来管理时，我们可能会去单独建立一个独立于 application 包之外的 Controller 包，并调整类的位置。调整后结构示意如下：
 
-![](https://learn.lianglianglee.com/%e4%b8%93%e6%a0%8f/Spring%e7%bc%96%e7%a8%8b%e5%b8%b8%e8%a7%81%e9%94%99%e8%af%af50%e4%be%8b/assets/eec656c5109d470a854c41a74a725494.jpg)
+![](assets/01_02.jpg)
 
 实际上，我们没有改变任何代码，只是改变了包的结构，但是我们会发现这个 Web 应用失效了，即不能识别出 HelloWorldController 了。也就是说，我们找不到 HelloWorldController 这个 Bean 了。这是为何？
 
@@ -52,7 +52,7 @@ public @interface ComponentScan { /** * Base packages to scan for annotated comp
 
 而在我们的案例中，我们直接使用的是 SpringBootApplication 注解定义的 ComponentScan，它的 basePackages 没有指定，所以默认为空（即{}）。此时扫描的是什么包？这里不妨带着这个问题去调试下（调试位置参考 ComponentScanAnnotationParser#parse 方法），调试视图如下：
 
-![](https://learn.lianglianglee.com/%e4%b8%93%e6%a0%8f/Spring%e7%bc%96%e7%a8%8b%e5%b8%b8%e8%a7%81%e9%94%99%e8%af%af50%e4%be%8b/assets/13447ea3fe70423cb7e44d66a33689b8.jpg)
+![](assets/01_03.jpg)
 
 从上图可以看出，当 basePackages 为空时，扫描的包会是 declaringClass 所在的包，在本案例中，declaringClass 就是 Application.class，所以扫描的包其实就是它所在的包，即com.spring.puzzle.class1.example1.application。
 
@@ -124,7 +124,7 @@ return this.beanFactory.resolveDependency( new DependencyDescriptor(param, true)
 
 如果用调试视图，我们则可以看到更多的信息：
 
-![](https://learn.lianglianglee.com/%e4%b8%93%e6%a0%8f/Spring%e7%bc%96%e7%a8%8b%e5%b8%b8%e8%a7%81%e9%94%99%e8%af%af50%e4%be%8b/assets/66f90d9085eb4658a12e4a526752d328.jpg)
+![](assets/01_04.jpg)
 
 如图所示，上述的调用即是根据参数来寻找对应的 Bean，在本案例中，如果找不到对应的 Bean 就会抛出异常，提示装配失败。
 
@@ -214,7 +214,7 @@ protected void inject(Object bean, @Nullable String beanName, @Nullable Property
 
 首先，我们可以通过调试方式看下方法的执行，参考下图：
 
-![](https://learn.lianglianglee.com/%e4%b8%93%e6%a0%8f/Spring%e7%bc%96%e7%a8%8b%e5%b8%b8%e8%a7%81%e9%94%99%e8%af%af50%e4%be%8b/assets/f4ff060783ff4b228c1a65563975eead.jpg)
+![](assets/01_05.jpg)
 
 从上图我们可以看出，我们最终的执行因为标记了 Lookup 而走入了 CglibSubclassingInstantiationStrategy.LookupOverrideMethodInterceptor，这个方法的关键实现参考 LookupOverrideMethodInterceptor#intercept：
 
@@ -242,7 +242,7 @@ private final BeanFactory owner; public Object intercept(Object obj, Method meth
 
 添加后效果图如下：
 
-![](https://learn.lianglianglee.com/%e4%b8%93%e6%a0%8f/Spring%e7%bc%96%e7%a8%8b%e5%b8%b8%e8%a7%81%e9%94%99%e8%af%af50%e4%be%8b/assets/4285e0e5eff4486ca6e718d0cdc9e291.jpg)
+![](assets/01_06.jpg)
 
 以上即为 Lookup 的一些关键实现思路。还有很多细节，例如CGLIB子类如何产生，无法一一解释，有兴趣的话，可以进一步深入研究，留言区等你。
 

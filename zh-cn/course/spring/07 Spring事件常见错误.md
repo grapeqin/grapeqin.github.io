@@ -6,7 +6,7 @@
 
 Spring事件的设计比较简单。说白了，就是监听器设计模式在Spring中的一种实现，参考下图：
 
-![](https://learn.lianglianglee.com/%e4%b8%93%e6%a0%8f/Spring%e7%bc%96%e7%a8%8b%e5%b8%b8%e8%a7%81%e9%94%99%e8%af%af50%e4%be%8b/assets/998134895f5e421d8e1acba0ec46be96.jpg)
+![](assets/07_01.jpg)
 
 从图中我们可以看出，Spring事件包含以下三大组件。
 
@@ -122,7 +122,7 @@ private void startBeans(boolean autoStartupOnly) { Map<String, Lifecycle> lifecy
 
 现在我们调试下代码，你会发现这个方法在Spring启动时一定经由SpringApplication#prepareEnvironment方法调用，调试截图如下：
 
-![](https://learn.lianglianglee.com/%e4%b8%93%e6%a0%8f/Spring%e7%bc%96%e7%a8%8b%e5%b8%b8%e8%a7%81%e9%94%99%e8%af%af50%e4%be%8b/assets/16a124d3fef34f5dbcf738be5fef393c.jpg)
+![](assets/07_02.jpg)
 
 表面上看，既然代码会被调用，事件就会抛出，那么我们在最开始定义的监听器就能处理，但是我们真正去运行程序时会发现，效果和案例1是一样的，都是监听器的处理并不执行，即拦截不了。这又是为何？
 
@@ -142,7 +142,7 @@ public class EventPublishingRunListener implements SpringApplicationRunListener,
 
 如果继续查看代码，我们会发现这个事件的监听器就存储在SpringApplication#Listeners中，调试下就可以找出所有的监听器，截图如下：
 
-![](https://learn.lianglianglee.com/%e4%b8%93%e6%a0%8f/Spring%e7%bc%96%e7%a8%8b%e5%b8%b8%e8%a7%81%e9%94%99%e8%af%af50%e4%be%8b/assets/9a29c0f2db8c4d47a538947896b97bde.jpg)
+![](assets/07_03.jpg)
 
 从中我们可以发现并不存在我们定义的MyApplicationEnvironmentPreparedEventListener，这是为何？
 

@@ -20,7 +20,7 @@
 
 但是当我们运行起程序，执行测试代码，就会报错如下：
 
-![](11%20Spring%20Web%20Body%20%E8%BD%AC%E5%8C%96%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/ee996f8cfbd743f49719a4556be98195.jpg)
+![](assets/11_01.jpg)
 
 从上述代码及配置来看，并没有什么明显的错误，可为什么会报错呢？难道框架不支持？
 
@@ -72,7 +72,7 @@ messageConverters.add(createConverterDefinition(ByteArrayHttpMessageConverter.cl
 
 假设我们依赖了 Gson 包，我们就可以添加上 GsonHttpMessageConverter 这种转化器。但是可惜的是，我们的案例并没有依赖上任何 JSON 的库，所以最终在候选的转换器列表里，并不存在 JSON 相关的转化器。最终候选列表示例如下：
 
-![](11%20Spring%20Web%20Body%20%E8%BD%AC%E5%8C%96%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/9f0953d5943545d6a111cfcd38e952aa.jpg)
+![](assets/11_02.jpg)
 
 由此可见，并没有任何 JSON 相关的编解码器。而针对 Student 类型的返回对象，上面的这些编解码器又不符合要求，所以最终走入了下面的代码行：
 

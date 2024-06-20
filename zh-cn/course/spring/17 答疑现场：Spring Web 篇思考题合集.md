@@ -52,7 +52,7 @@ private static final String DELIMITER = ",";
 
 经过上面的修改后，我们再次运行测试程序，我们会发现 Content-Type 确实可以设置成我们想要的样子，具体如下：
 
-![](17%20%E7%AD%94%E7%96%91%E7%8E%B0%E5%9C%BA%EF%BC%9ASpring%20Web%20%E7%AF%87%E6%80%9D%E8%80%83%E9%A2%98%E5%90%88%E9%9B%86/2c51b6809e734b69a84e429aaf12d9e3.jpg)
+![](assets/17_01.jpg)
 
 同样是执行 addHeader()，但是因为置换了容器，所以调用的方法实际是 Jetty 的方法，具体参考 org.eclipse.jetty.server.Response#addHeader：
 
@@ -98,7 +98,7 @@ import javax.servlet.http.HttpServletResponse; public String hi3(HttpServletResp
 
 而这个依赖项会间接把 Jackson 添加进去，依赖关系参考下图：
 
-![](17%20%E7%AD%94%E7%96%91%E7%8E%B0%E5%9C%BA%EF%BC%9ASpring%20Web%20%E7%AF%87%E6%80%9D%E8%80%83%E9%A2%98%E5%90%88%E9%9B%86/c99e0a6a0e2a491fa4094900529235cb.jpg)
+![](assets/17_02.jpg)
 
 后续 Jackson 编解码器的添加，和普通 Spring MVC 关键逻辑相同：都是判断相关类是否存在。不过这里可以稍微总结下，判断相关类是否存在有两种风格：
 
@@ -196,11 +196,11 @@ private void selfInitialize(ServletContext servletContext) throws ServletExcepti
 
 1.  启动Spring Boot时，启动Tomcat：
 
-![](17%20%E7%AD%94%E7%96%91%E7%8E%B0%E5%9C%BA%EF%BC%9ASpring%20Web%20%E7%AF%87%E6%80%9D%E8%80%83%E9%A2%98%E5%90%88%E9%9B%86/0bf5ee9468324e2c93a56590a4a8c32d.jpg)
+![](assets/17_03.jpg)
 
 1.  Tomcat启动后回调selfInitialize：
 
-![](17%20%E7%AD%94%E7%96%91%E7%8E%B0%E5%9C%BA%EF%BC%9ASpring%20Web%20%E7%AF%87%E6%80%9D%E8%80%83%E9%A2%98%E5%90%88%E9%9B%86/027ce359b8cd4a2b9ee74cdd42dbe39d.jpg)
+![](assets/17_04.jpg)
 
 相信通过上述调用栈，你能更清晰地理解Tomcat启动和Filter添加的时机了。
 
@@ -208,7 +208,7 @@ private void selfInitialize(ServletContext servletContext) throws ServletExcepti
 
 通过案例 1 的学习，我们知道在 Spring Boot 开启 Spring Security 时，访问需要授权的 API 会自动跳转到如下登录页面，你知道这个页面是如何产生的么？
 
-![](17%20%E7%AD%94%E7%96%91%E7%8E%B0%E5%9C%BA%EF%BC%9ASpring%20Web%20%E7%AF%87%E6%80%9D%E8%80%83%E9%A2%98%E5%90%88%E9%9B%86/f44ec35ca5f14375882cf392f42cb180.jpg)
+![](assets/17_05.jpg)
 
 实际上，在 Spring Boot 启用 Spring Security 后，匿名访问一个需要授权的 API 接口时，我们会发现这个接口授权会失败，从而进行 302 跳转，跳转的关键代码可参考 ExceptionTranslationFilter 调用的 LoginUrlAuthenticationEntryPoint#commence 方法：
 
@@ -218,7 +218,7 @@ public void commence(HttpServletRequest request, HttpServletResponse response, A
 
 具体的跳转情况可参考 Chrome 的开发工具：
 
-![](17%20%E7%AD%94%E7%96%91%E7%8E%B0%E5%9C%BA%EF%BC%9ASpring%20Web%20%E7%AF%87%E6%80%9D%E8%80%83%E9%A2%98%E5%90%88%E9%9B%86/4dc342a42b4c45a5864df204e993be4a.jpg)
+![](assets/17_06.jpg)
 
 在跳转后，新的请求最终看到的效果图是由下面的代码生产的 HTML 页面，参考 DefaultLoginPageGeneratingFilter#generateLoginPageHtml：
 

@@ -8,7 +8,7 @@
 
 实际上，当我们依赖 spring-boot-starter 时，我们就间接依赖了 spring-boot -autoconfigure。
 
-![](23%20%E7%AD%94%E7%96%91%E7%8E%B0%E5%9C%BA%EF%BC%9ASpring%20%E8%A1%A5%E5%85%85%E7%AF%87%E6%80%9D%E8%80%83%E9%A2%98%E5%90%88%E9%9B%86/2f0d2b7f22254ef7b191ece3c6545084.jpg)
+![](assets/23_01.jpg)
 
 在这个 JAR 中，存在下面这样的一个类，即 RedisAutoConfiguration。
 
@@ -34,7 +34,7 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\ org.springframe
 
 当它使用了 AutoConfigurationImportSelector 这个类，这个类就会导入在META-INF/spring.factories定义的 RedisAutoConfiguration。那么 import 动作是什么时候执行的呢？实际上是在启动应用程序时触发的，调用堆栈信息如下：
 
-![](23%20%E7%AD%94%E7%96%91%E7%8E%B0%E5%9C%BA%EF%BC%9ASpring%20%E8%A1%A5%E5%85%85%E7%AF%87%E6%80%9D%E8%80%83%E9%A2%98%E5%90%88%E9%9B%86/8148a15e5a3d4342b364fffd1b9e5e45.jpg)
+![](assets/23_02.jpg)
 
 结合上面的堆栈和相关源码，我们不妨可以总结下 RedisTemplate 被创建的过程。
 
@@ -76,7 +76,7 @@ RuntimeException 是 Exception 的子类，如果用 rollbackFor=Exception.class
 
 不管是使用 Query 参数还是用 Form 参数来访问，对于案例程序而言，解析的关键逻辑都是类似的，都是通过下面的调用栈完成参数的解析：
 
-![](23%20%E7%AD%94%E7%96%91%E7%8E%B0%E5%9C%BA%EF%BC%9ASpring%20%E8%A1%A5%E5%85%85%E7%AF%87%E6%80%9D%E8%80%83%E9%A2%98%E5%90%88%E9%9B%86/8713edfa6bf14ee9989d05de1383716f.jpg)
+![](assets/23_03.jpg)
 
 这里可以看出，负责解析的都是 RequestParamMethodArgumentResolver，解析最后的调用也都是一样的方法。在 org.apache.catalina.connector.Request#parseParameters 这个方法中，对于 From 的解析是这样的：
 

@@ -324,7 +324,7 @@ public class JdbcConfig { //省略非关键代码 @Value("${card.driver}") priva
 
 最后我们来看一下整个过程的调用栈，重新过一遍流程（这里我略去了不重要的部分）。
 
-![](20%20Spring%20%E4%BA%8B%E5%8A%A1%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%EF%BC%88%E4%B8%8B%EF%BC%89/7f3941a5a89d413bb46f9c100f787a0d.jpg)
+![](assets/20_01.jpg)
 
 在创建了事务以后，会通过 DataSourceTransactionManager.doBegin()获取相应的数据库连接：
 

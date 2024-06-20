@@ -16,7 +16,7 @@
 
 看起来顺风顺水，但是假设这个 name 中含有特殊字符/时（例如[http://localhost:8080/hi1/xiao/ming](http://localhost:8080/hi1/xiaoming) ），会如何？如果我们不假思索，或许答案是”xiao/ming”？然而稍微敏锐点的程序员都会判定这个访问是会报错的，具体错误参考：
 
-![](09%20Spring%20Web%20URL%20%E8%A7%A3%E6%9E%90%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/da282ca3e0c942c6a124b3672d9962b1.jpg)
+![](assets/09_01.jpg)
 
 如图所示，当 name 中含有/，这个接口不会为 name 获取任何值，而是直接报Not Found错误。当然这里的“找不到”并不是指name找不到，而是指服务于这个特殊请求的接口。
 
@@ -38,7 +38,7 @@
 
 这个步骤执行的代码语句是”this.mappingRegistry.getMappingsByUrl(lookupPath)“，实际上，它是查询 MappingRegistry#urlLookup，它的值可以用调试视图查看，如下图所示：
 
-![](09%20Spring%20Web%20URL%20%E8%A7%A3%E6%9E%90%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/e5228329c945474fa388b57f65e7c22f.jpg)
+![](assets/09_02.jpg)
 
 查询 urlLookup 是一个精确匹配 Path 的过程。很明显，[http://localhost:8080/hi1/xiao/ming](http://localhost:8080/hi1/xiaoming) 的 lookupPath 是”/hi1/xiao/ming”，并不能得到任何精确匹配。这里需要补充的是，”/hi1/{name}“这种定义本身也没有出现在 urlLookup 中。
 
@@ -46,7 +46,7 @@
 
 在步骤 1 匹配失败时，会根据请求来尝试模糊匹配，待匹配的匹配方法可参考下图：
 
-![](09%20Spring%20Web%20URL%20%E8%A7%A3%E6%9E%90%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/658f673383934de990aa676c755d9072.jpg)
+![](assets/09_03.jpg)
 
 显然，”/hi1/{name}“这个匹配方法已经出现在待匹配候选中了。具体匹配过程可以参考方法 RequestMappingInfo#getMatchingCondition：
 
@@ -58,7 +58,7 @@ public RequestMappingInfo getMatchingCondition(HttpServletRequest request) { Req
 
 在我们的案例中，当使用 [http://localhost:8080/hi1/xiaoming](http://localhost:8080/hi1/xiaoming) 访问时，其中 patternsCondition 是可以匹配上的。实际的匹配方法执行是通过 AntPathMatcher#match 来执行，判断的相关参数可参考以下调试视图：
 
-![](09%20Spring%20Web%20URL%20%E8%A7%A3%E6%9E%90%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/351194df4a6c441b86408010aea66437.jpg)
+![](assets/09_04.jpg)
 
 但是当我们使用 [http://localhost:8080/hi1/xiao/ming](http://localhost:8080/hi1/xiaoming) 来访问时，AntPathMatcher 执行的结果是”/hi1/xiao/ming”匹配不上”/hi1/{name}“。
 
@@ -112,7 +112,7 @@ private AntPathMatcher antPathMatcher = new AntPathMatcher(); @RequestMapping(pa
 
 很明显，对于喜欢追究极致简洁的同学来说，这个酷炫的功能是一个福音。但当我们换一个项目时，有可能上线后就失效了，然后报错 500，提示匹配不上。
 
-![](09%20Spring%20Web%20URL%20%E8%A7%A3%E6%9E%90%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/76e5ba7f6d314bcba1bc7552bddaa35e.jpg)
+![](assets/09_05.jpg)
 
 ### 案例解析
 
@@ -124,7 +124,7 @@ private AntPathMatcher antPathMatcher = new AntPathMatcher(); @RequestMapping(pa
 
 上述配置显示关闭了 parameters 和 debug，这 2 个参数的作用你可以参考下面的表格：
 
-![](09%20Spring%20Web%20URL%20%E8%A7%A3%E6%9E%90%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/873d203454bb488fbf5ea1f768dd0d69.jpg)
+![](assets/09_06.jpg)
 
 通过上述描述，我们可以看出这 2 个参数控制了一些 debug 信息是否加进 class 文件中。我们可以开启这两个参数来编译，然后使用下面的命令来查看信息：
 
@@ -132,7 +132,7 @@ private AntPathMatcher antPathMatcher = new AntPathMatcher(); @RequestMapping(pa
 
 执行完命令后，我们会看到以下 class 信息：
 
-![](09%20Spring%20Web%20URL%20%E8%A7%A3%E6%9E%90%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/455c0aa051114134bfaa848a2ed20978.jpg)
+![](assets/09_07.jpg)
 
 debug 参数开启的部分信息就是 LocalVaribleTable，而 paramters 参数开启的信息就是 MethodParameters。观察它们的信息，你会发现它们都含有参数名name。
 
@@ -148,7 +148,7 @@ private NamedValueInfo updateNamedValueInfo(MethodParameter parameter, NamedValu
 
 所以这里我们就会尝试调用 parameter.getParameterName() 来获取参数名作为解析请求参数的名称。但是，很明显，关掉上面两个开关后，就不可能在 class 文件中找到参数名了，这点可以从下面的调试试图中得到验证：
 
-![](09%20Spring%20Web%20URL%20%E8%A7%A3%E6%9E%90%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/d9288d7982c648e2816dc181cf985069.jpg)
+![](assets/09_08.jpg)
 
 当参数名不存在，@RequestParam 也没有指明，自然就无法决定到底要用什么名称去获取请求参数，所以就会报本案例的错误。
 
@@ -176,7 +176,7 @@ private NamedValueInfo updateNamedValueInfo(MethodParameter parameter, NamedValu
 
 在访问 [http://localhost:8080/hi4?name=xiaoming&address=beijing](http://localhost:8080/hi2?name=xiaoming&address=beijing) 时并不会出问题，但是一旦用户仅仅使用 name 做请求（即 [http://localhost:8080/hi4?name=xiaoming](http://localhost:8080/hi4?name=xiaoming) ）时，则会直接报错如下：
 
-![](09%20Spring%20Web%20URL%20%E8%A7%A3%E6%9E%90%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/87b6a2663d5148bc8c316a93f38a009a.jpg)
+![](assets/09_09.jpg)
 
 此时，返回错误码 400，提示请求格式错误：此处缺少 address 参数。
 
@@ -208,7 +208,7 @@ public final Object resolveArgument(MethodParameter parameter, @Nullable ModelAn
 
 实际上就是 @RequestParam 的相关信息，我们调试下，就可以验证这个结论，具体如下图所示：
 
-![](09%20Spring%20Web%20URL%20%E8%A7%A3%E6%9E%90%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/e5c02e8275a6492b8bcefed577e07845.jpg)
+![](assets/09_10.jpg)
 
 **2\. 在 @RequestParam 没有指明默认值时，会查看这个参数是否必须，如果必须，则按错误处理**
 
@@ -282,7 +282,7 @@ protected void handleMissingValue(String name, MethodParameter parameter) throws
 
 然后，我们使用一些看似明显符合日期格式的 URL 来访问，例如 [http://localhost:8080/hi6?date=2021-5-1 20:26:53](http://localhost:8080/hi6?date=2021-5-1%2020:26:53)，我们会发现 Spring 并不能完成转化，而是报错如下：
 
-![](09%20Spring%20Web%20URL%20%E8%A7%A3%E6%9E%90%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/0b3885184edf4b5a986f8613169ceabd.jpg)
+![](assets/09_11.jpg)
 
 此时，返回错误码 400，错误信息为”Failed to convert value of type ‘java.lang.String’ to required type ‘java.util.Date”。
 
@@ -336,7 +336,7 @@ public Date(String s) { this(parse(s)); }
 
 这是因为 AnnotationParserConverter 有目标类型的要求，这点我们可以通过调试角度来看下，参考 FormattingConversionService#addFormatterForFieldAnnotation 方法的调试试图：
 
-![](09%20Spring%20Web%20URL%20%E8%A7%A3%E6%9E%90%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/63dcc9f1056c4dc38d3a06d9511ba6bf.jpg)
+![](assets/09_12.jpg)
 
 这是适应于 String 到 Date 类型的转化器 AnnotationParserConverter 实例的构造过程，其需要的 annototationType 参数为 DateTimeFormat。
 
@@ -348,7 +348,7 @@ annototationType 的作用正是为了帮助判断是否能用这个转化器，
 
 最终构建出来的转化器相关信息可以参考下图：
 
-![](09%20Spring%20Web%20URL%20%E8%A7%A3%E6%9E%90%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/df679f0f62984769b2457455626cf616.jpg)
+![](assets/09_13.jpg)
 
 图中构造出的转化器是可以用来转化 String 到 Date，但是它要求我们标记 @DateTimeFormat。很明显，我们的参数 Date 并没有标记这个注解，所以这里为了使用这个转化器，我们可以使用上它并提供合适的格式。这样就可以让原来不工作的 URL 工作起来，具体修改代码如下：
 

@@ -26,7 +26,7 @@ import org.springframework.beans.factory.annotation.Autowired; import org.spring
 
 然而事与愿违，我们得到的只会是 NullPointerException，错误示例如下：
 
-![](https://learn.lianglianglee.com/%e4%b8%93%e6%a0%8f/Spring%e7%bc%96%e7%a8%8b%e5%b8%b8%e8%a7%81%e9%94%99%e8%af%af50%e4%be%8b/assets/496f362c7239432d8f35c2b01e263ba9.jpg)
+![](assets/04_01.jpg)
 
 这是为什么呢？
 
@@ -34,7 +34,7 @@ import org.springframework.beans.factory.annotation.Autowired; import org.spring
 
 显然这是新手最常犯的错误，但是问题的根源，是我们**对Spring类初始化过程没有足够的了解**。下面这张时序图描述了 Spring 启动时的一些关键结点：
 
-![](https://learn.lianglianglee.com/%e4%b8%93%e6%a0%8f/Spring%e7%bc%96%e7%a8%8b%e5%b8%b8%e8%a7%81%e9%94%99%e8%af%af50%e4%be%8b/assets/69de7d4cd2dc4b3084d219acfd3b594d.jpg)
+![](assets/04_02.jpg)
 
 这个图初看起来复杂，我们不妨将其分为三部分：
 

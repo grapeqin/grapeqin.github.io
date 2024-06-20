@@ -24,7 +24,7 @@ RestTemplate template = new RestTemplate(); Map<String, Object> paramMap = new H
 
 测试后你会发现事与愿违，返回提示 400 错误，即请求出错：
 
-![](21%20Spring%20Rest%20Template%20%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/0429e8064d38450b801e6e49c35820c3.jpg)
+![](assets/21_01.jpg)
 
 具体而言，就是缺少 para1 表单参数。为什么会出现这个错误呢？我们提交的表单最后又成了什么？
 
@@ -32,7 +32,7 @@ RestTemplate template = new RestTemplate(); Map<String, Object> paramMap = new H
 
 在具体解析这个问题之前，我们先来直观地了解下，当我们使用上述的 RestTemplate 提交表单，最后的提交请求长什么样？这里我使用 Wireshark 抓包工具直接给你抓取出来：
 
-![](21%20Spring%20Rest%20Template%20%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/27c2706e547a476cbadb0b1dbe8ecd34.jpg)
+![](assets/21_02.jpg)
 
 从上图可以看出，我们实际上是将定义的表单数据以 JSON 请求体（Body）的形式提交过去了，所以我们的接口处理自然取不到任何表单参数。
 
@@ -40,7 +40,7 @@ RestTemplate template = new RestTemplate(); Map<String, Object> paramMap = new H
 
 首先，我们看下上述代码的调用栈：
 
-![](21%20Spring%20Rest%20Template%20%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/ad911c7026804f88848a70c0eeb0f711.jpg)
+![](assets/21_03.jpg)
 
 确实可以验证，我们最终使用的是 Jackson 工具来对表单进行了序列化。使用到 JSON 的关键之处在于其中的关键调用 RestTemplate.HttpEntityRequestCallback#doWithRequest：
 
@@ -50,7 +50,7 @@ public void doWithRequest(ClientHttpRequest httpRequest) throws IOException { su
 
 上述代码看起来比较复杂，实际上功能很简单：根据当前要提交的 Body 内容，遍历当前支持的所有编解码器，如果找到合适的编解码器，就使用它来完成 Body 的转化。这里我们不妨看下 JSON 的编解码器对是否合适的判断，参考 AbstractJackson2HttpMessageConverter#canWrite：
 
-![](21%20Spring%20Rest%20Template%20%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/0786d0ddd08c41bca0f2f12d9894efa3.jpg)
+![](assets/21_04.jpg)
 
 可以看出，当我们使用的 Body 是一个 HashMap 时，是可以完成 JSON 序列化的。所以在后续将这个表单序列化为请求 Body 也就不奇怪了。
 
@@ -78,7 +78,7 @@ public void write(MultiValueMap<String, ?> map, @Nullable MediaType contentType,
 
 发送出的数据截图如下：
 
-![](21%20Spring%20Rest%20Template%20%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/da4722779e2f43fa9384a247855defe3.jpg)
+![](assets/21_05.jpg)
 
 这样就满足我们的需求了。
 
@@ -118,7 +118,7 @@ String url = "http://localhost:8080/hi?para1=1#2"; HttpEntity<?> entity = new Ht
 
 类似案例 1 解析的套路，在具体解析之前，我们可以先直观感受下问题出在什么地方。我们使用调试方式去查看解析后的 URL，截图如下：
 
-![](21%20Spring%20Rest%20Template%20%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/2593f32abd414ce7ac9be611c4a18c37.jpg)
+![](assets/21_06.jpg)
 
 可以看出，para1 丢掉的 #2 实际是以 Fragment 的方式被记录下来了。这里顺便科普下什么是 Fragment，这得追溯到 URL 的格式定义：
 
@@ -138,7 +138,7 @@ String url = "http://localhost:8080/hi?para1=1#2"; HttpEntity<?> entity = new Ht
 
 了解了这些补充知识后，我们其实就能知道问题出在哪了。不过本着严谨的态度，我们还是翻阅下源码。首先，我们先看下 URL 解析的调用栈，示例如下：
 
-![](21%20Spring%20Rest%20Template%20%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/99af6ab14c6e4663be065e0c2a6e0ddc.jpg)
+![](assets/21_07.jpg)
 
 参考上述调用栈，解析 URL 的关键点在于 UriComponentsBuilder#fromUriString 实现：
 
@@ -168,7 +168,7 @@ String url = "http://localhost:8080/hi?para1=1#2"; UriComponentsBuilder builder 
 
 与之前的案例代码进行比较，你会发现 URL 的组装方式发生了改变。但最终可以获取到我们预期的效果，调试视图参考如下：
 
-![](21%20Spring%20Rest%20Template%20%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/540566ddd31d4cc2bff878ebe0063f3b.jpg)
+![](assets/21_08.jpg)
 
 可以看出，参数 para1 对应的值变成了我们期待的”1#2”。
 
@@ -224,7 +224,7 @@ public final UriComponents encode() { return encode(StandardCharsets.UTF_8); }
 
 查询调用栈，结果如下：
 
-![](21%20Spring%20Rest%20Template%20%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/b7e0b11ac6124e7187a08fafcfe3fde6.jpg)
+![](assets/21_09.jpg)
 
 而当我们把 URL 转化成 String，再通过下面的语句来发送请求时：
 
@@ -232,7 +232,7 @@ public final UriComponents encode() { return encode(StandardCharsets.UTF_8); }
 
 我们会发现，它会再进行一次编码：
 
-![](21%20Spring%20Rest%20Template%20%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/90dfd218844c40fa90eaddd6b2f38327.jpg)
+![](assets/21_10.jpg)
 
 看到这里，你或许已经明白问题出在哪了，即我们按照案例的代码会执行 2 次编码（Encode），所以最终我们反而获取不到想要的结果了。
 
@@ -240,11 +240,11 @@ public final UriComponents encode() { return encode(StandardCharsets.UTF_8); }
 
 1 次编码后：
 
-![](21%20Spring%20Rest%20Template%20%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/133ebd355a8f44c2a71ea9a774c4137e.jpg)
+![](assets/21_11.jpg)
 
 2 次编码后：
 
-![](21%20Spring%20Rest%20Template%20%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/c723a22e198f4e20ac28470eef287d0f.jpg)
+![](assets/21_12.jpg)
 
 ### 问题修正
 

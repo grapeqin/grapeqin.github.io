@@ -8,7 +8,7 @@
 
 要想使用好 Spring，你就一**定要了解它的一些潜规则**，例如默认扫描Bean的范围、自动装配构造器等等。如果我们不了解这些规则，大多情况下虽然也能工作，但是稍微变化，则可能完全失效，例如在[第1课](https://time.geekbang.org/column/article/364761)的案例1中，我们使用 Spring Boot 来快速构建了一个简易的 Web 版 HelloWorld：
 
-![](%E7%9F%A5%E8%AF%86%E5%9B%9E%E9%A1%BE%20%E7%B3%BB%E7%BB%9F%E6%A2%B3%E7%90%86Spring%E7%BC%96%E7%A8%8B%E9%94%99%E8%AF%AF%E6%A0%B9%E6%BA%90/e110ee0ed8fa4cf3845c754dddfdbb0d.jpg)
+![](assets/huigu_01.jpg)
 
 其中，负责启动程序的 Application 类定义如下：
 
@@ -24,7 +24,7 @@ package com.spring.puzzle.class1.example1.application //省略 import @RestContr
 
 但是，假设有一天，当我们需要添加多个类似的 Controller，同时又希望用更清晰的包层次结构来管理时，我们可能会去单独建立一个独立于 application 包之外的 Controller 包，并调整类的位置。调整后结构示意如下：
 
-![](%E7%9F%A5%E8%AF%86%E5%9B%9E%E9%A1%BE%20%E7%B3%BB%E7%BB%9F%E6%A2%B3%E7%90%86Spring%E7%BC%96%E7%A8%8B%E9%94%99%E8%AF%AF%E6%A0%B9%E6%BA%90/7ea97f198edb4002ae5e7d69500d42db.jpg)
+![](assets/huigu_02.jpg)
 
 这样就会工作不起来了，追根溯源，你可能忽略了Sping Boot中@SpringBootApplication是有一个默认的扫描包范围的。这就是一个隐私规则。如果你原本不知道，那么犯错概率还是很高的。类似的案例这里不再赘述。
 

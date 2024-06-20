@@ -78,7 +78,7 @@ Exception in thread "main" java.lang.Exception: 该学生已存在 at com.spring
 
 我们通过 debug 沿着 saveStudent 继续往下跟，得到了一个这样的调用栈：
 
-![](19%20Spring%20%E4%BA%8B%E5%8A%A1%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%EF%BC%88%E4%B8%8A%EF%BC%89/4d7f14965e2949808041761ae9d8e95a.jpg)
+![](assets/19_01.jpg)
 
 从这个调用栈中我们看到了熟悉的 CglibAopProxy，另外事务本质上也是一种特殊的切面，在创建的过程中，被 CglibAopProxy 代理。事务处理的拦截器是 TransactionInterceptor，它支撑着整个事务功能的架构，我们来分析下这个拦截器是如何实现事务特性的。
 
@@ -156,7 +156,7 @@ public boolean rollbackOn(Throwable ex) { return (ex instanceof RuntimeException
 
 通过 debug，我们一步步寻找到了问题的根源，得到了以下调用栈。我们通过 Spring 的源码来解析一下完整的过程。
 
-![](19%20Spring%20%E4%BA%8B%E5%8A%A1%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%EF%BC%88%E4%B8%8A%EF%BC%89/453b8c61db324119bdc9a9af4aa3e30c.jpg)
+![](assets/19_02.jpg)
 
 前一段是 Spring 创建 Bean 的过程。当 Bean 初始化之后，开始尝试代理操作，这个过程是从 AbstractAutoProxyCreator 里的 postProcessAfterInitialization 方法开始处理的：
 

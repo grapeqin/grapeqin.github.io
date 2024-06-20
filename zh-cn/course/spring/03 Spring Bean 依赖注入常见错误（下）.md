@@ -86,7 +86,7 @@ String strVal = resolveEmbeddedValue((String) value);
 
 这里其实是在解析嵌入的值，实际上就是“替换占位符”工作。具体而言，它采用的是PropertySourcesPlaceholderConfigurer根据PropertySources来替换。不过当使用 ${username} 来获取替换值时，其最终执行的查找并不是局限在application.property文件中的。通过调试，我们可以看到下面的这些“源”都是替换依据：
 
-![](https://learn.lianglianglee.com/%e4%b8%93%e6%a0%8f/Spring%e7%bc%96%e7%a8%8b%e5%b8%b8%e8%a7%81%e9%94%99%e8%af%af50%e4%be%8b/assets/579184faf70a4425b7fbf42cd24aa3d5.jpg)
+![](assets/03_01.jpg)
 
 ```bash
 [ConfigurationPropertySourcesPropertySource {name='configurationProperties'}, StubPropertySource {name='servletConfigInitParams'}, ServletContextPropertySource {name='servletContextInitParams'}, PropertiesPropertySource {name='systemProperties'}, OriginAwareSystemEnvironmentPropertySource {name='systemEnvironment'}, RandomValuePropertySource {name='random'}, OriginTrackedMapPropertySource {name='applicationConfig: classpath:/application.properties]'}, MapPropertySource {name='devtools'}]
@@ -102,7 +102,7 @@ String strVal = resolveEmbeddedValue((String) value);
 
 如果我们查看systemEnvironment这个源，会发现刚好有一个username和我们是重合的，且值不是pass。
 
-![](https://learn.lianglianglee.com/%e4%b8%93%e6%a0%8f/Spring%e7%bc%96%e7%a8%8b%e5%b8%b8%e8%a7%81%e9%94%99%e8%af%af50%e4%be%8b/assets/ab560187bc08439b980ea314e04e9aca.jpg)
+![](assets/03_02.jpg)
 
 所以，讲到这里，你应该知道问题所在了吧？这是一个误打误撞的例子，刚好系统环境变量（systemEnvironment）中含有同名的配置。实际上，对于系统参数（systemProperties）也是一样的，这些参数或者变量都有很多，如果我们没有意识到它的存在，起了一个同名的字符串作为@Value的值，则很容易引发这类问题。
 

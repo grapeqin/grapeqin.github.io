@@ -30,7 +30,7 @@ public interface DataService { void deleteStudent(int id); } @Repository @Slf4j 
 
 实际上，当我们完成支持多个数据库的准备工作时，程序就已经无法启动了，报错如下：
 
-![](https://learn.lianglianglee.com/%e4%b8%93%e6%a0%8f/Spring%e7%bc%96%e7%a8%8b%e5%b8%b8%e8%a7%81%e9%94%99%e8%af%af50%e4%be%8b/assets/b731c4a063eb453f880cb8eed3687567.jpg)
+![](assets/02_01.jpg)
 
 很显然，上述报错信息正是我们这一小节讨论的错误，那么这个错误到底是怎么产生的呢？接下来我们具体分析下。
 
@@ -67,7 +67,7 @@ InjectionMetadata metadata = findAutowiringMetadata(beanName, bean.getClass(), p
 
 为了更清晰地展示错误发生的位置，我们可以采用调试的视角展示其位置（即DefaultListableBeanFactory#doResolveDependency中代码片段），参考下图：
 
-![](https://learn.lianglianglee.com/%e4%b8%93%e6%a0%8f/Spring%e7%bc%96%e7%a8%8b%e5%b8%b8%e8%a7%81%e9%94%99%e8%af%af50%e4%be%8b/assets/96842c40dffc44cc818fc225c563c909.jpg)
+![](assets/02_02.jpg)
 
 如上图所示，当我们根据DataService这个类型来找出依赖时，我们会找出2个依赖，分别为CassandraDataService和OracleDataService。在这样的情况下，如果同时满足以下两个条件则会抛出本案例的错误：
 
@@ -155,7 +155,7 @@ raiseNoMatchingBeanFound(type, descriptor.getResolvableType(), descriptor);
 
 一旦找出这些Bean的信息，就可以生成这些Bean的名字，然后组合成一个个BeanDefinitionHolder返回给上层。这个过程关键步骤可以查看下图的代码片段（ClassPathBeanDefinitionScanner#doScan）：
 
-![](https://learn.lianglianglee.com/%e4%b8%93%e6%a0%8f/Spring%e7%bc%96%e7%a8%8b%e5%b8%b8%e8%a7%81%e9%94%99%e8%af%af50%e4%be%8b/assets/96ad15af93994cdab1a43b3a03f9f286.jpg)
+![](assets/02_03.jpg)
 
 基本匹配我们前面描述的过程，其中方法调用BeanNameGenerator#generateBeanName即用来产生Bean的名字，它有两种实现方式。因为DataService的实现都是使用注解标记的，所以Bean名称的生成逻辑最终调用的其实是AnnotationBeanNameGenerator#generateBeanName这种实现方式，我们可以看下它的具体实现，代码如下：
 

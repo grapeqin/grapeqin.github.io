@@ -42,7 +42,7 @@ public class HelloWorldService { }
 
 当我们运行上述测试的时候，会发现测试失败了，报错如下：
 
-![](22%20Spring%20Test%20%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/38f5b914936d42b8b4e17d3520a92901.jpg)
+![](assets/22_01.jpg)
 
 为什么单独运行应用程序没有问题，但是运行测试就不行了呢？我们需要研究一下 Spring 的源码，来找找答案。
 
@@ -54,15 +54,15 @@ public class HelloWorldService { }
 
 首先看下调用栈：
 
-![](22%20Spring%20Test%20%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/af9984e42f2243298c53406c846763d4.jpg)
+![](assets/22_02.jpg)
 
 可以看出，它最终以 ClassPathResource 形式来加载，这个资源的情况如下：
 
-![](22%20Spring%20Test%20%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/931cde4470dc40199d4f4eaa12aaa11f.jpg)
+![](assets/22_03.jpg)
 
 而具体到加载实现，它使用的是 ClassPathResource#getInputStream 来加载spring.xml文件：
 
-![](22%20Spring%20Test%20%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/4f7051d14486429d9fa44c3e6a78af8f.jpg)
+![](assets/22_04.jpg)
 
 从上述调用及代码实现，可以看出最终是可以加载成功的。
 
@@ -70,11 +70,11 @@ public class HelloWorldService { }
 
 首先看下调用栈：
 
-![](22%20Spring%20Test%20%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/ffa6d903b5b844648aa64cea812de130.jpg)
+![](assets/22_05.jpg)
 
 可以看出它是按 ServletContextResource 来加载的，这个资源的情况如下：
 
-![](22%20Spring%20Test%20%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/d86a120159ec4d4cbc23aa743a5d83b6.jpg)
+![](assets/22_06.jpg)
 
 具体到实现，它最终使用的是 MockServletContext#getResourceAsStream 来加载文件：
 
@@ -98,7 +98,7 @@ classpath:META-INF/resources classpath:resources classpath:static classpath:publ
 
 那你肯定是忽略了一点：当程序运行起来后，src/main/resource 下的文件最终是不带什么resource的。关于这点，你可以直接查看编译后的目录（本地编译后是 target\\classes 目录），示例如下：
 
-![](22%20Spring%20Test%20%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/5d0fc76d24b14e7989d427e192cdf319.jpg)
+![](assets/22_07.jpg)
 
 所以，最终我们在所有的目录中都找不到spring.xml，并且会报错提示加载不了文件。报错的地方位于 ServletContextResource#getInputStream 中：
 
@@ -122,7 +122,7 @@ classpath:META-INF/resources classpath:resources classpath:static classpath:publ
 
 这里，我们可以通过 Spring 的官方文档简单了解下不同加载方式的区别，参考 [https://docs.spring.io/spring-framework/docs/2.5.x/reference/resources.html](https://docs.spring.io/spring-framework/docs/2.5.x/reference/resources.html)：
 
-![](22%20Spring%20Test%20%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/263887b108ee41ffbe1e44aec8d354b2.jpg)
+![](assets/22_08.jpg)
 
 很明显，我们一般都不会使用本案例的方式（即locations = {“spring.xml”}，无任何“前缀”的方式），毕竟它已经依赖于使用的 ApplicationContext。而 classPath 更为普适些，而一旦你按上述方式修正后，你会发现它加载的资源已经不再是 ServletContextResource，而是和应用程序一样的 ClassPathResource，这样自然可以加载到了。
 
@@ -132,7 +132,7 @@ classpath:META-INF/resources classpath:resources classpath:static classpath:publ
 
 接下来，我们再来看一个非功能性的错误案例。有时候，我们会发现 Spring Test 运行起来非常缓慢，寻根溯源之后，你会发现主要是因为很多测试都启动了Spring Context，示例如下：
 
-![](22%20Spring%20Test%20%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/dec97f5c4b0e4f8a876f69864f5c5da7.jpg)
+![](assets/22_09.jpg)
 
 那么为什么有的测试会多次启动 Spring Context？在具体解析这个问题之前，我们先模拟写一个案例来复现这个问题。
 
@@ -172,11 +172,11 @@ public int hashCode() { int result = Arrays.hashCode(this.locations); result = 3
 
 ServiceOneTests 的 MergedContextConfiguration 示例如下：
 
-![](22%20Spring%20Test%20%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/56ee894be556464091ec93b13daf2d51.jpg)
+![](assets/22_10.jpg)
 
 ServiceTwoTests 的 MergedContextConfiguration 示例如下：
 
-![](22%20Spring%20Test%20%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/9e9377f67ed843ee89b51b76c9ec2c9a.jpg)
+![](assets/22_11.jpg)
 
 很明显，MergedContextConfiguration（即 Context Cache 的 Key）的 ContextCustomizer 是不同的，所以 Context 没有共享起来。而追溯到 ContextCustomizer 的创建，我们可以具体来看下。
 

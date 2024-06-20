@@ -46,7 +46,7 @@ throw NotAllowException
 
 我们先来回顾一下[第13课](https://time.geekbang.org/column/article/376115)讲过的过滤器执行流程图，这里我细化了一下：
 
-![](16%20Spring%20Exception%20%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/26d2a5c3443f46f299add44843e1d70f.jpg)
+![](assets/16_01.jpg)
 
 从这张图中可以看出，当所有的过滤器被执行完毕以后，Spring 才会进入 Servlet 相关的处理，而 DispatcherServlet 才是整个 Servlet 处理的核心，它是前端控制器设计模式的实现，提供 Spring Web MVC 的集中访问点并负责职责的分派。正是在这里，Spring 处理了请求和处理器之间的对应关系，以及这个案例我们所关注的问题——统一异常处理。
 
@@ -62,7 +62,7 @@ throw NotAllowException
 
 最终按照下图的调用栈，Spring 实例化了ExceptionHandlerExceptionResolver类。
 
-![](16%20Spring%20Exception%20%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/f24b8e58e19947309a1e41d35d1b6568.jpg)
+![](assets/16_02.jpg)
 
 从源码中我们可以看出，ExceptionHandlerExceptionResolver 类实现了InitializingBean接口，并覆写了afterPropertiesSet()。
 
@@ -210,7 +210,7 @@ protected AbstractHandlerMapping getHandlerMapping() { //省略非关键代码 M
 
 我们查看以下调用栈截图：
 
-![](16%20Spring%20Exception%20%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/d94dace724874c5891a0af67e4ed0e7e.jpg)
+![](assets/16_03.jpg)
 
 可以了解到，当前方法中的 addResourceHandlers() 最终执行到了 WebMvcAutoConfiguration 类中的 addResourceHandlers()，通过这个方法，我们可以知道当前有哪些 ResourceHandler 的集合被注册到了Spring容器中：
 
@@ -250,7 +250,7 @@ protected HandlerExecutionChain getHandler(HttpServletRequest request) throws Ex
 
 因为此处有一个 SimpleUrlHandlerMapping，它会拦截所有路径的请求：
 
-![](16%20Spring%20Exception%20%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/69164d59d711411fb9d285525c7b5288.jpg)
+![](assets/16_04.jpg)
 
 所以最终在 doDispatch() 的 getHandler() 将会获取到此 handler，从而 mappedHandler==null 条件不能得到满足，因而无法走到 noHandlerFound()，不会抛出 NoHandlerFoundException 异常，进而无法被后续的异常处理器进一步处理。
 
