@@ -21,3 +21,5 @@
 [09 从工程师到管理者，角色都发生了哪些变化？](</zh-cn/course/tech-management/09%20%E4%BB%8E%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%88%B0%E7%AE%A1%E7%90%86%E8%80%85%EF%BC%8C%E8%A7%92%E8%89%B2%E9%83%BD%E5%8F%91%E7%94%9F%E4%BA%86%E5%93%AA%E4%BA%9B%E5%8F%98%E5%8C%96%EF%BC%9F.md>)
 
 [10 新经理常踩的坑儿有哪些？](</zh-cn/course/tech-management/10%20%E6%96%B0%E7%BB%8F%E7%90%86%E5%B8%B8%E8%B8%A9%E7%9A%84%E5%9D%91%E5%84%BF%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F.md>)
+
+[11 我刚开始带团队，从哪里着手呢？](</zh-cn/course/tech-management/11%20%E6%88%91%E5%88%9A%E5%BC%80%E5%A7%8B%E5%B8%A6%E5%9B%A2%E9%98%9F%EF%BC%8C%E4%BB%8E%E5%93%AA%E9%87%8C%E7%9D%80%E6%89%8B%E5%91%A2%EF%BC%9F.md>)
