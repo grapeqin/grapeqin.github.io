@@ -23,3 +23,7 @@
 [10 新经理常踩的坑儿有哪些？](</zh-cn/course/tech-management/10%20%E6%96%B0%E7%BB%8F%E7%90%86%E5%B8%B8%E8%B8%A9%E7%9A%84%E5%9D%91%E5%84%BF%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F.md>)
 
 [11 我刚开始带团队，从哪里着手呢？](</zh-cn/course/tech-management/11%20%E6%88%91%E5%88%9A%E5%BC%80%E5%A7%8B%E5%B8%A6%E5%9B%A2%E9%98%9F%EF%BC%8C%E4%BB%8E%E5%93%AA%E9%87%8C%E7%9D%80%E6%89%8B%E5%91%A2%EF%BC%9F.md>)
+
+[12 如何界定我团队是干什么的呢？](</zh-cn/course/tech-management/12%20%E5%A6%82%E4%BD%95%E7%95%8C%E5%AE%9A%E6%88%91%E5%9B%A2%E9%98%9F%E6%98%AF%E5%B9%B2%E4%BB%80%E4%B9%88%E7%9A%84%E5%91%A2%EF%BC%9F.md>)
+
+[13 如何为团队设定合理的目标呢？](</zh-cn/course/tech-management/13%20%E5%A6%82%E4%BD%95%E4%B8%BA%E5%9B%A2%E9%98%9F%E8%AE%BE%E5%AE%9A%E5%90%88%E7%90%86%E7%9A%84%E7%9B%AE%E6%A0%87%E5%91%A2%EF%BC%9F.md>)
