@@ -27,3 +27,5 @@
 [12 如何界定我团队是干什么的呢？](</zh-cn/course/tech-management/12%20%E5%A6%82%E4%BD%95%E7%95%8C%E5%AE%9A%E6%88%91%E5%9B%A2%E9%98%9F%E6%98%AF%E5%B9%B2%E4%BB%80%E4%B9%88%E7%9A%84%E5%91%A2%EF%BC%9F.md>)
 
 [13 如何为团队设定合理的目标呢？](</zh-cn/course/tech-management/13%20%E5%A6%82%E4%BD%95%E4%B8%BA%E5%9B%A2%E9%98%9F%E8%AE%BE%E5%AE%9A%E5%90%88%E7%90%86%E7%9A%84%E7%9B%AE%E6%A0%87%E5%91%A2%EF%BC%9F.md>)
+
+[14 如何来规划团队的组织结构呢？](/zh-cn/course/tech-management/14%20%E5%A6%82%E4%BD%95%E6%9D%A5%E8%A7%84%E5%88%92%E5%9B%A2%E9%98%9F%E7%9A%84%E7%BB%84%E7%BB%87%E7%BB%93%E6%9E%84%E5%91%A2%EF%BC%9F.md)
