@@ -29,3 +29,7 @@
 [13 如何为团队设定合理的目标呢？](</zh-cn/course/tech-management/13%20%E5%A6%82%E4%BD%95%E4%B8%BA%E5%9B%A2%E9%98%9F%E8%AE%BE%E5%AE%9A%E5%90%88%E7%90%86%E7%9A%84%E7%9B%AE%E6%A0%87%E5%91%A2%EF%BC%9F.md>)
 
 [14 如何来规划团队的组织结构呢？](/zh-cn/course/tech-management/14%20%E5%A6%82%E4%BD%95%E6%9D%A5%E8%A7%84%E5%88%92%E5%9B%A2%E9%98%9F%E7%9A%84%E7%BB%84%E7%BB%87%E7%BB%93%E6%9E%84%E5%91%A2%EF%BC%9F.md)
+
+[15 我都要申请哪些资源呢？](/zh-cn/course/tech-management/15%20%E6%88%91%E9%83%BD%E8%A6%81%E7%94%B3%E8%AF%B7%E5%93%AA%E4%BA%9B%E8%B5%84%E6%BA%90%E5%91%A2%EF%BC%9F.md)
+
+[16 团队建设该从哪里入手？](/zh-cn/course/tech-management/16%20%E5%9B%A2%E9%98%9F%E5%BB%BA%E8%AE%BE%E8%AF%A5%E4%BB%8E%E5%93%AA%E9%87%8C%E5%85%A5%E6%89%8B%EF%BC%9F.md)
