@@ -45,3 +45,5 @@
 [21 如何物色和培养核心人才？](</zh-cn/course/tech-management/21%20%E5%A6%82%E4%BD%95%E7%89%A9%E8%89%B2%E5%92%8C%E5%9F%B9%E5%85%BB%E6%A0%B8%E5%BF%83%E4%BA%BA%E6%89%8D%EF%BC%9F.md>)
 
 [22 如何建设团队文化，营造团队氛围？](<22%20%E5%A6%82%E4%BD%95%E5%BB%BA%E8%AE%BE%E5%9B%A2%E9%98%9F%E6%96%87%E5%8C%96%EF%BC%8C%E8%90%A5%E9%80%A0%E5%9B%A2%E9%98%9F%E6%B0%9B%E5%9B%B4%EF%BC%9F.md>)
+
+[23 如何和低绩效员工谈绩效？](</zh-cn/course/tech-management/23%20%E5%A6%82%E4%BD%95%E5%92%8C%E4%BD%8E%E7%BB%A9%E6%95%88%E5%91%98%E5%B7%A5%E8%B0%88%E7%BB%A9%E6%95%88%EF%BC%9F.md>)
