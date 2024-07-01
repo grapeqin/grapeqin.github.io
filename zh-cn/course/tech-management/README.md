@@ -47,3 +47,11 @@
 [22 如何建设团队文化，营造团队氛围？](<22%20%E5%A6%82%E4%BD%95%E5%BB%BA%E8%AE%BE%E5%9B%A2%E9%98%9F%E6%96%87%E5%8C%96%EF%BC%8C%E8%90%A5%E9%80%A0%E5%9B%A2%E9%98%9F%E6%B0%9B%E5%9B%B4%EF%BC%9F.md>)
 
 [23 如何和低绩效员工谈绩效？](</zh-cn/course/tech-management/23%20%E5%A6%82%E4%BD%95%E5%92%8C%E4%BD%8E%E7%BB%A9%E6%95%88%E5%91%98%E5%B7%A5%E8%B0%88%E7%BB%A9%E6%95%88%EF%BC%9F.md>)
+
+[24 如何让团建活动不再“收效甚微”？](</zh-cn/course/tech-management/24%20%E5%A6%82%E4%BD%95%E8%AE%A9%E5%9B%A2%E5%BB%BA%E6%B4%BB%E5%8A%A8%E4%B8%8D%E5%86%8D%E2%80%9C%E6%94%B6%E6%95%88%E7%94%9A%E5%BE%AE%E2%80%9D%EF%BC%9F.md>)
+
+[25 多任务并行该如何应对？](</zh-cn/course/tech-management/25%20%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%B9%B6%E8%A1%8C%E8%AF%A5%E5%A6%82%E4%BD%95%E5%BA%94%E5%AF%B9%EF%BC%9F.md>)
+
+[26 如何确保项目的有效执行？](</zh-cn/course/tech-management/26%20%E5%A6%82%E4%BD%95%E7%A1%AE%E4%BF%9D%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%9C%89%E6%95%88%E6%89%A7%E8%A1%8C%EF%BC%9F.md>)
+
+[27 如何让流程机制得到有效的执行？](</zh-cn/course/tech-management/27%20%E5%A6%82%E4%BD%95%E8%AE%A9%E6%B5%81%E7%A8%8B%E6%9C%BA%E5%88%B6%E5%BE%97%E5%88%B0%E6%9C%89%E6%95%88%E7%9A%84%E6%89%A7%E8%A1%8C%EF%BC%9F.md>)
