@@ -55,3 +55,9 @@
 [26 如何确保项目的有效执行？](</zh-cn/course/tech-management/26%20%E5%A6%82%E4%BD%95%E7%A1%AE%E4%BF%9D%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%9C%89%E6%95%88%E6%89%A7%E8%A1%8C%EF%BC%9F.md>)
 
 [27 如何让流程机制得到有效的执行？](</zh-cn/course/tech-management/27%20%E5%A6%82%E4%BD%95%E8%AE%A9%E6%B5%81%E7%A8%8B%E6%9C%BA%E5%88%B6%E5%BE%97%E5%88%B0%E6%9C%89%E6%95%88%E7%9A%84%E6%89%A7%E8%A1%8C%EF%BC%9F.md>)
+
+[28 管理沟通那些事儿](</zh-cn/course/tech-management/28%20%E7%AE%A1%E7%90%86%E6%B2%9F%E9%80%9A%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF.md>)
+
+[29 沟通经常鸡同鸭讲，说不到一块怎么办？](</zh-cn/course/tech-management/29%20%E6%B2%9F%E9%80%9A%E7%BB%8F%E5%B8%B8%E9%B8%A1%E5%90%8C%E9%B8%AD%E8%AE%B2%EF%BC%8C%E8%AF%B4%E4%B8%8D%E5%88%B0%E4%B8%80%E5%9D%97%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F.md>)
+
+[30 如何掌控自己的情绪，以及如何管理情绪化的员工？](</zh-cn/course/tech-management/30%20%E5%A6%82%E4%BD%95%E6%8E%8C%E6%8E%A7%E8%87%AA%E5%B7%B1%E7%9A%84%E6%83%85%E7%BB%AA%EF%BC%8C%E4%BB%A5%E5%8F%8A%E5%A6%82%E4%BD%95%E7%AE%A1%E7%90%86%E6%83%85%E7%BB%AA%E5%8C%96%E7%9A%84%E5%91%98%E5%B7%A5%EF%BC%9F.md>)
