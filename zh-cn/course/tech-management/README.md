@@ -61,3 +61,15 @@
 [29 沟通经常鸡同鸭讲，说不到一块怎么办？](</zh-cn/course/tech-management/29%20%E6%B2%9F%E9%80%9A%E7%BB%8F%E5%B8%B8%E9%B8%A1%E5%90%8C%E9%B8%AD%E8%AE%B2%EF%BC%8C%E8%AF%B4%E4%B8%8D%E5%88%B0%E4%B8%80%E5%9D%97%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F.md>)
 
 [30 如何掌控自己的情绪，以及如何管理情绪化的员工？](</zh-cn/course/tech-management/30%20%E5%A6%82%E4%BD%95%E6%8E%8C%E6%8E%A7%E8%87%AA%E5%B7%B1%E7%9A%84%E6%83%85%E7%BB%AA%EF%BC%8C%E4%BB%A5%E5%8F%8A%E5%A6%82%E4%BD%95%E7%AE%A1%E7%90%86%E6%83%85%E7%BB%AA%E5%8C%96%E7%9A%84%E5%91%98%E5%B7%A5%EF%BC%9F.md>)
+
+[31 我各方面做得都很好，就是做不好向上沟通](</zh-cn/course/tech-management/31%20%E6%88%91%E5%90%84%E6%96%B9%E9%9D%A2%E5%81%9A%E5%BE%97%E9%83%BD%E5%BE%88%E5%A5%BD%EF%BC%8C%E5%B0%B1%E6%98%AF%E5%81%9A%E4%B8%8D%E5%A5%BD%E5%90%91%E4%B8%8A%E6%B2%9F%E9%80%9A.md>)
+
+[32 横向沟通和非职权影响力](</zh-cn/course/tech-management/32%20%E6%A8%AA%E5%90%91%E6%B2%9F%E9%80%9A%E5%92%8C%E9%9D%9E%E8%81%8C%E6%9D%83%E5%BD%B1%E5%93%8D%E5%8A%9B.md>)
+
+[33 向下沟通的常见实例解析](</zh-cn/course/tech-management/33%20%E5%90%91%E4%B8%8B%E6%B2%9F%E9%80%9A%E7%9A%84%E5%B8%B8%E8%A7%81%E5%AE%9E%E4%BE%8B%E8%A7%A3%E6%9E%90.md>)
+
+[34 管理沟通上有哪些常见的坑儿呢？](</zh-cn/course/tech-management/34%20%E7%AE%A1%E7%90%86%E6%B2%9F%E9%80%9A%E4%B8%8A%E6%9C%89%E5%93%AA%E4%BA%9B%E5%B8%B8%E8%A7%81%E7%9A%84%E5%9D%91%E5%84%BF%E5%91%A2%EF%BC%9F.md>)
+
+[35 从空降谈管理方法论的积累](</zh-cn/course/tech-management/35%20%E4%BB%8E%E7%A9%BA%E9%99%8D%E8%B0%88%E7%AE%A1%E7%90%86%E6%96%B9%E6%B3%95%E8%AE%BA%E7%9A%84%E7%A7%AF%E7%B4%AF.md>)
+
+[36 走出自己的管理之路](</zh-cn/course/tech-management/36%20%E8%B5%B0%E5%87%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E7%AE%A1%E7%90%86%E4%B9%8B%E8%B7%AF.md>)
