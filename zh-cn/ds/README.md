@@ -4,7 +4,7 @@
 
 ## 一、数组
 
-[两数之和](zh-cn/ds/Array01.md)
+[两数之和](zh-cn/ds/Array1.md)
 
 [数组中重复的数据](zh-cn/ds/Array2.md)
 
